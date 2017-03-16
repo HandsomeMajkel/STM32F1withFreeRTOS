@@ -1,0 +1,4125 @@
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   3              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   4              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   5              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+   6              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+   7              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+   8              		.eabi_attribute 30, 6	@ Tag_ABI_optimization_goals
+   9              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  10              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  11              		.file	"vectors.c"
+  12              	@ GNU C89 (bleeding-edge-toolchain) version 6.3.0 (arm-none-eabi)
+  13              	@	compiled by GNU C version 6.2.1 20160830, GMP version 6.1.2, MPFR version 3.1.5, MPC version 1.0.
+  14              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  15              	@ options passed:  -I . -I Setup -I RtosV611 -I RtosV611/Source
+  16              	@ -I RtosV611/Source/include -I RtosV611/Source/portable/GCC/ARM_CM3
+  17              	@ -I RtosV611/Source/portable/MemMang -I RtosV611/Common/include
+  18              	@ -imultilib armv7-m
+  19              	@ -iprefix c:\stm32\arm-none-eabi-gcc-6.3.0-170107\bin\../lib/gcc/arm-none-eabi/6.3.0/
+  20              	@ -isysroot c:\stm32\arm-none-eabi-gcc-6.3.0-170107\bin\../arm-none-eabi
+  21              	@ -MD out/vectors.d -MF out/vectors.d -MP -MQ out/vectors.o
+  22              	@ -D__USES_INITFINI__ Setup/vectors.c -mcpu=cortex-m3 -mthumb
+  23              	@ -auxbase-strip out/vectors.o -g -ggdb3 -O0 -Wall -Wstrict-prototypes
+  24              	@ -Wextra -std=gnu90 -ffunction-sections -fdata-sections -fverbose-asm
+  25              	@ options enabled:  -faggressive-loop-optimizations -fauto-inc-dec
+  26              	@ -fchkp-check-incomplete-type -fchkp-check-read -fchkp-check-write
+  27              	@ -fchkp-instrument-calls -fchkp-narrow-bounds -fchkp-optimize
+  28              	@ -fchkp-store-bounds -fchkp-use-static-bounds
+  29              	@ -fchkp-use-static-const-bounds -fchkp-use-wrappers -fcommon
+  30              	@ -fdata-sections -fdelete-null-pointer-checks -fdwarf2-cfi-asm
+  31              	@ -fearly-inlining -feliminate-unused-debug-types -ffunction-cse
+  32              	@ -ffunction-sections -fgcse-lm -fgnu-runtime -fgnu-unique -fident
+  33              	@ -finline-atomics -fira-hoist-pressure -fira-share-save-slots
+  34              	@ -fira-share-spill-slots -fivopts -fkeep-static-consts
+  35              	@ -fleading-underscore -flifetime-dse -flto-odr-type-merging -fmath-errno
+  36              	@ -fmerge-debug-strings -fpeephole -fplt -fprefetch-loop-arrays
+  37              	@ -freg-struct-return -fsched-critical-path-heuristic
+  38              	@ -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
+  39              	@ -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
+  40              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep
+  41              	@ -fsemantic-interposition -fshow-column -fsigned-zeros
+  42              	@ -fsplit-ivs-in-unroller -fssa-backprop -fstdarg-opt
+  43              	@ -fstrict-volatile-bitfields -fsync-libcalls -ftrapping-math -ftree-cselim
+  44              	@ -ftree-forwprop -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
+  45              	@ -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop
+  46              	@ -ftree-reassoc -ftree-scev-cprop -funit-at-a-time -fverbose-asm
+  47              	@ -fzero-initialized-in-bss -masm-syntax-unified -mfix-cortex-m3-ldrd
+  48              	@ -mlittle-endian -mpic-data-is-text-relative -msched-prolog -mthumb
+  49              	@ -munaligned-access -mvectorize-with-neon-quad
+  50              	
+  51              		.text
+  52              	.Ltext0:
+  53              		.cfi_sections	.debug_frame
+  54              		.section	.text.__Default_Handler,"ax",%progbits
+  55              		.align	1
+  56              		.syntax unified
+  57              		.thumb
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 2
+
+
+  58              		.thumb_func
+  59              		.fpu softvfp
+  60              		.type	__Default_Handler, %function
+  61              	__Default_Handler:
+  62              	.LFB0:
+  63              		.file 1 "Setup/vectors.c"
+   1:Setup/vectors.c **** /** \file vectors.c
+   2:Setup/vectors.c ****  * \brief STM32 (STM32F101 - STM32F103) vector table and __Default_Handler()
+   3:Setup/vectors.c ****  * \details STM32 (STM32F101 - STM32F103) vector table and __Default_Handler()
+   4:Setup/vectors.c ****  * \author Freddie Chopin, http://www.freddiechopin.info/
+   5:Setup/vectors.c ****  * \date 2010-04-02
+   6:Setup/vectors.c ****  */
+   7:Setup/vectors.c **** 
+   8:Setup/vectors.c **** /******************************************************************************
+   9:Setup/vectors.c **** * chip: STM32F103RB
+  10:Setup/vectors.c **** * compiler: arm-none-eabi-gcc (Sourcery G++ Lite 2009q3-68) 4.4.1
+  11:Setup/vectors.c **** ******************************************************************************/
+  12:Setup/vectors.c **** 
+  13:Setup/vectors.c **** /*------------------------------------------------------------------------*//**
+  14:Setup/vectors.c **** * \brief Default interrupt handler.
+  15:Setup/vectors.c **** * \details Default interrupt handler, used for interrupts that don't have their
+  16:Setup/vectors.c **** * own handler defined.
+  17:Setup/vectors.c **** *//*-------------------------------------------------------------------------*/
+  18:Setup/vectors.c **** 
+  19:Setup/vectors.c **** static void __Default_Handler(void) __attribute__ ((interrupt));
+  20:Setup/vectors.c **** static void __Default_Handler(void)
+  21:Setup/vectors.c **** {
+  64              		.loc 1 21 0
+  65              		.cfi_startproc
+  66              		@ Stack Align: May be called with mis-aligned SP.
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 1, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+  70 0000 6846     		mov	r0, sp	@,
+  71              		.cfi_register 13, 0
+  72 0002 20F00701 		bic	r1, r0, #7	@,,
+  73 0006 8D46     		mov	sp, r1	@,
+  74 0008 81B4     		push	{r0, r7}	@
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 13, -8
+  77              		.cfi_offset 7, -4
+  78 000a 00AF     		add	r7, sp, #0	@,,
+  79              		.cfi_def_cfa_register 7
+  80              	.L2:
+  22:Setup/vectors.c **** 	while (1);
+  81              		.loc 1 22 0 discriminator 1
+  82 000c FEE7     		b	.L2	@
+  83              		.cfi_endproc
+  84              	.LFE0:
+  85              		.size	__Default_Handler, .-__Default_Handler
+  86              		.weak	DMA2_Channel4_5_IRQHandler
+  87              		.thumb_set DMA2_Channel4_5_IRQHandler,__Default_Handler
+  88              		.weak	DMA2_Channel3_IRQHandler
+  89              		.thumb_set DMA2_Channel3_IRQHandler,__Default_Handler
+  90              		.weak	DMA2_Channel2_IRQHandler
+  91              		.thumb_set DMA2_Channel2_IRQHandler,__Default_Handler
+  92              		.weak	DMA2_Channel1_IRQHandler
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 3
+
+
+  93              		.thumb_set DMA2_Channel1_IRQHandler,__Default_Handler
+  94              		.weak	TIM7_IRQHandler
+  95              		.thumb_set TIM7_IRQHandler,__Default_Handler
+  96              		.weak	TIM6_IRQHandler
+  97              		.thumb_set TIM6_IRQHandler,__Default_Handler
+  98              		.weak	UART5_IRQHandler
+  99              		.thumb_set UART5_IRQHandler,__Default_Handler
+ 100              		.weak	UART4_IRQHandler
+ 101              		.thumb_set UART4_IRQHandler,__Default_Handler
+ 102              		.weak	SPI3_IRQHandler
+ 103              		.thumb_set SPI3_IRQHandler,__Default_Handler
+ 104              		.weak	TIM5_IRQHandler
+ 105              		.thumb_set TIM5_IRQHandler,__Default_Handler
+ 106              		.weak	SDIO_IRQHandler
+ 107              		.thumb_set SDIO_IRQHandler,__Default_Handler
+ 108              		.weak	FSMC_IRQHandler
+ 109              		.thumb_set FSMC_IRQHandler,__Default_Handler
+ 110              		.weak	ADC3_IRQHandler
+ 111              		.thumb_set ADC3_IRQHandler,__Default_Handler
+ 112              		.weak	TIM8_CC_IRQHandler
+ 113              		.thumb_set TIM8_CC_IRQHandler,__Default_Handler
+ 114              		.weak	TIM8_TRG_COM_IRQHandler
+ 115              		.thumb_set TIM8_TRG_COM_IRQHandler,__Default_Handler
+ 116              		.weak	TIM8_UP_IRQHandler
+ 117              		.thumb_set TIM8_UP_IRQHandler,__Default_Handler
+ 118              		.weak	TIM8_BRK_IRQHandler
+ 119              		.thumb_set TIM8_BRK_IRQHandler,__Default_Handler
+ 120              		.weak	USBWakeup_IRQHandler
+ 121              		.thumb_set USBWakeup_IRQHandler,__Default_Handler
+ 122              		.weak	RTCAlarm_IRQHandler
+ 123              		.thumb_set RTCAlarm_IRQHandler,__Default_Handler
+ 124              		.weak	EXTI15_10_IRQHandler
+ 125              		.thumb_set EXTI15_10_IRQHandler,__Default_Handler
+ 126              		.weak	USART3_IRQHandler
+ 127              		.thumb_set USART3_IRQHandler,__Default_Handler
+ 128              		.weak	USART2_IRQHandler
+ 129              		.thumb_set USART2_IRQHandler,__Default_Handler
+ 130              		.weak	USART1_IRQHandler
+ 131              		.thumb_set USART1_IRQHandler,__Default_Handler
+ 132              		.weak	SPI2_IRQHandler
+ 133              		.thumb_set SPI2_IRQHandler,__Default_Handler
+ 134              		.weak	SPI1_IRQHandler
+ 135              		.thumb_set SPI1_IRQHandler,__Default_Handler
+ 136              		.weak	I2C2_ER_IRQHandler
+ 137              		.thumb_set I2C2_ER_IRQHandler,__Default_Handler
+ 138              		.weak	I2C2_EV_IRQHandler
+ 139              		.thumb_set I2C2_EV_IRQHandler,__Default_Handler
+ 140              		.weak	I2C1_ER_IRQHandler
+ 141              		.thumb_set I2C1_ER_IRQHandler,__Default_Handler
+ 142              		.weak	I2C1_EV_IRQHandler
+ 143              		.thumb_set I2C1_EV_IRQHandler,__Default_Handler
+ 144              		.weak	TIM4_IRQHandler
+ 145              		.thumb_set TIM4_IRQHandler,__Default_Handler
+ 146              		.weak	TIM3_IRQHandler
+ 147              		.thumb_set TIM3_IRQHandler,__Default_Handler
+ 148              		.weak	TIM2_IRQHandler
+ 149              		.thumb_set TIM2_IRQHandler,__Default_Handler
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 4
+
+
+ 150              		.weak	TIM1_CC_IRQHandler
+ 151              		.thumb_set TIM1_CC_IRQHandler,__Default_Handler
+ 152              		.weak	TIM1_TRG_COM_IRQHandler
+ 153              		.thumb_set TIM1_TRG_COM_IRQHandler,__Default_Handler
+ 154              		.weak	TIM1_UP_IRQHandler
+ 155              		.thumb_set TIM1_UP_IRQHandler,__Default_Handler
+ 156              		.weak	TIM1_BRK_IRQHandler
+ 157              		.thumb_set TIM1_BRK_IRQHandler,__Default_Handler
+ 158              		.weak	EXTI9_5_IRQHandler
+ 159              		.thumb_set EXTI9_5_IRQHandler,__Default_Handler
+ 160              		.weak	CAN_SCE_IRQHandler
+ 161              		.thumb_set CAN_SCE_IRQHandler,__Default_Handler
+ 162              		.weak	CAN_RX1_IRQHandler
+ 163              		.thumb_set CAN_RX1_IRQHandler,__Default_Handler
+ 164              		.weak	USB_LP_CAN1_RX0_IRQHandler
+ 165              		.thumb_set USB_LP_CAN1_RX0_IRQHandler,__Default_Handler
+ 166              		.weak	USB_HP_CAN1_TX_IRQHandler
+ 167              		.thumb_set USB_HP_CAN1_TX_IRQHandler,__Default_Handler
+ 168              		.weak	ADC1_2_IRQHandler
+ 169              		.thumb_set ADC1_2_IRQHandler,__Default_Handler
+ 170              		.weak	DMA1_Channel7_IRQHandler
+ 171              		.thumb_set DMA1_Channel7_IRQHandler,__Default_Handler
+ 172              		.weak	DMA1_Channel6_IRQHandler
+ 173              		.thumb_set DMA1_Channel6_IRQHandler,__Default_Handler
+ 174              		.weak	DMA1_Channel5_IRQHandler
+ 175              		.thumb_set DMA1_Channel5_IRQHandler,__Default_Handler
+ 176              		.weak	DMA1_Channel4_IRQHandler
+ 177              		.thumb_set DMA1_Channel4_IRQHandler,__Default_Handler
+ 178              		.weak	DMA1_Channel3_IRQHandler
+ 179              		.thumb_set DMA1_Channel3_IRQHandler,__Default_Handler
+ 180              		.weak	DMA1_Channel2_IRQHandler
+ 181              		.thumb_set DMA1_Channel2_IRQHandler,__Default_Handler
+ 182              		.weak	DMA1_Channel1_IRQHandler
+ 183              		.thumb_set DMA1_Channel1_IRQHandler,__Default_Handler
+ 184              		.weak	EXTI4_IRQHandler
+ 185              		.thumb_set EXTI4_IRQHandler,__Default_Handler
+ 186              		.weak	EXTI3_IRQHandler
+ 187              		.thumb_set EXTI3_IRQHandler,__Default_Handler
+ 188              		.weak	EXTI2_IRQHandler
+ 189              		.thumb_set EXTI2_IRQHandler,__Default_Handler
+ 190              		.weak	EXTI1_IRQHandler
+ 191              		.thumb_set EXTI1_IRQHandler,__Default_Handler
+ 192              		.weak	EXTI0_IRQHandler
+ 193              		.thumb_set EXTI0_IRQHandler,__Default_Handler
+ 194              		.weak	RCC_IRQHandler
+ 195              		.thumb_set RCC_IRQHandler,__Default_Handler
+ 196              		.weak	FLASH_IRQHandler
+ 197              		.thumb_set FLASH_IRQHandler,__Default_Handler
+ 198              		.weak	RTC_IRQHandler
+ 199              		.thumb_set RTC_IRQHandler,__Default_Handler
+ 200              		.weak	TAMPER_IRQHandler
+ 201              		.thumb_set TAMPER_IRQHandler,__Default_Handler
+ 202              		.weak	PVD_IRQHandler
+ 203              		.thumb_set PVD_IRQHandler,__Default_Handler
+ 204              		.weak	WWDG_IRQHandler
+ 205              		.thumb_set WWDG_IRQHandler,__Default_Handler
+ 206              		.weak	SysTick_Handler
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 5
+
+
+ 207              		.thumb_set SysTick_Handler,__Default_Handler
+ 208              		.weak	PendSV_Handler
+ 209              		.thumb_set PendSV_Handler,__Default_Handler
+ 210              		.weak	__Reserved_0x34_Handler
+ 211              		.thumb_set __Reserved_0x34_Handler,__Default_Handler
+ 212              		.weak	DebugMon_Handler
+ 213              		.thumb_set DebugMon_Handler,__Default_Handler
+ 214              		.weak	SVC_Handler
+ 215              		.thumb_set SVC_Handler,__Default_Handler
+ 216              		.weak	__Reserved_0x28_Handler
+ 217              		.thumb_set __Reserved_0x28_Handler,__Default_Handler
+ 218              		.weak	__Reserved_0x24_Handler
+ 219              		.thumb_set __Reserved_0x24_Handler,__Default_Handler
+ 220              		.weak	__Reserved_0x20_Handler
+ 221              		.thumb_set __Reserved_0x20_Handler,__Default_Handler
+ 222              		.weak	__Reserved_0x1C_Handler
+ 223              		.thumb_set __Reserved_0x1C_Handler,__Default_Handler
+ 224              		.weak	UsageFault_Handler
+ 225              		.thumb_set UsageFault_Handler,__Default_Handler
+ 226              		.weak	BusFault_Handler
+ 227              		.thumb_set BusFault_Handler,__Default_Handler
+ 228              		.weak	MemManage_Handler
+ 229              		.thumb_set MemManage_Handler,__Default_Handler
+ 230              		.weak	HardFault_Handler
+ 231              		.thumb_set HardFault_Handler,__Default_Handler
+ 232              		.weak	NMI_Handler
+ 233              		.thumb_set NMI_Handler,__Default_Handler
+ 234              		.global	vectors
+ 235              		.section	.vectors,"a",%progbits
+ 236              		.align	2
+ 237              		.type	vectors, %object
+ 238              		.size	vectors, 304
+ 239              	vectors:
+ 240 0000 00000000 		.word	__main_stack_end
+ 241 0004 00000000 		.word	Reset_Handler
+ 242 0008 00000000 		.word	NMI_Handler
+ 243 000c 00000000 		.word	HardFault_Handler
+ 244 0010 00000000 		.word	MemManage_Handler
+ 245 0014 00000000 		.word	BusFault_Handler
+ 246 0018 00000000 		.word	UsageFault_Handler
+ 247 001c 00000000 		.word	__Reserved_0x1C_Handler
+ 248 0020 00000000 		.word	__Reserved_0x20_Handler
+ 249 0024 00000000 		.word	__Reserved_0x24_Handler
+ 250 0028 00000000 		.word	__Reserved_0x28_Handler
+ 251 002c 00000000 		.word	SVC_Handler
+ 252 0030 00000000 		.word	DebugMon_Handler
+ 253 0034 00000000 		.word	__Reserved_0x34_Handler
+ 254 0038 00000000 		.word	PendSV_Handler
+ 255 003c 00000000 		.word	SysTick_Handler
+ 256 0040 00000000 		.word	WWDG_IRQHandler
+ 257 0044 00000000 		.word	PVD_IRQHandler
+ 258 0048 00000000 		.word	TAMPER_IRQHandler
+ 259 004c 00000000 		.word	RTC_IRQHandler
+ 260 0050 00000000 		.word	FLASH_IRQHandler
+ 261 0054 00000000 		.word	RCC_IRQHandler
+ 262 0058 00000000 		.word	EXTI0_IRQHandler
+ 263 005c 00000000 		.word	EXTI1_IRQHandler
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 6
+
+
+ 264 0060 00000000 		.word	EXTI2_IRQHandler
+ 265 0064 00000000 		.word	EXTI3_IRQHandler
+ 266 0068 00000000 		.word	EXTI4_IRQHandler
+ 267 006c 00000000 		.word	DMA1_Channel1_IRQHandler
+ 268 0070 00000000 		.word	DMA1_Channel2_IRQHandler
+ 269 0074 00000000 		.word	DMA1_Channel3_IRQHandler
+ 270 0078 00000000 		.word	DMA1_Channel4_IRQHandler
+ 271 007c 00000000 		.word	DMA1_Channel5_IRQHandler
+ 272 0080 00000000 		.word	DMA1_Channel6_IRQHandler
+ 273 0084 00000000 		.word	DMA1_Channel7_IRQHandler
+ 274 0088 00000000 		.word	ADC1_2_IRQHandler
+ 275 008c 00000000 		.word	USB_HP_CAN1_TX_IRQHandler
+ 276 0090 00000000 		.word	USB_LP_CAN1_RX0_IRQHandler
+ 277 0094 00000000 		.word	CAN_RX1_IRQHandler
+ 278 0098 00000000 		.word	CAN_SCE_IRQHandler
+ 279 009c 00000000 		.word	EXTI9_5_IRQHandler
+ 280 00a0 00000000 		.word	TIM1_BRK_IRQHandler
+ 281 00a4 00000000 		.word	TIM1_UP_IRQHandler
+ 282 00a8 00000000 		.word	TIM1_TRG_COM_IRQHandler
+ 283 00ac 00000000 		.word	TIM1_CC_IRQHandler
+ 284 00b0 00000000 		.word	TIM2_IRQHandler
+ 285 00b4 00000000 		.word	TIM3_IRQHandler
+ 286 00b8 00000000 		.word	TIM4_IRQHandler
+ 287 00bc 00000000 		.word	I2C1_EV_IRQHandler
+ 288 00c0 00000000 		.word	I2C1_ER_IRQHandler
+ 289 00c4 00000000 		.word	I2C2_EV_IRQHandler
+ 290 00c8 00000000 		.word	I2C2_ER_IRQHandler
+ 291 00cc 00000000 		.word	SPI1_IRQHandler
+ 292 00d0 00000000 		.word	SPI2_IRQHandler
+ 293 00d4 00000000 		.word	USART1_IRQHandler
+ 294 00d8 00000000 		.word	USART2_IRQHandler
+ 295 00dc 00000000 		.word	USART3_IRQHandler
+ 296 00e0 00000000 		.word	EXTI15_10_IRQHandler
+ 297 00e4 00000000 		.word	RTCAlarm_IRQHandler
+ 298 00e8 00000000 		.word	USBWakeup_IRQHandler
+ 299 00ec 00000000 		.word	TIM8_BRK_IRQHandler
+ 300 00f0 00000000 		.word	TIM8_UP_IRQHandler
+ 301 00f4 00000000 		.word	TIM8_TRG_COM_IRQHandler
+ 302 00f8 00000000 		.word	TIM8_CC_IRQHandler
+ 303 00fc 00000000 		.word	ADC3_IRQHandler
+ 304 0100 00000000 		.word	FSMC_IRQHandler
+ 305 0104 00000000 		.word	SDIO_IRQHandler
+ 306 0108 00000000 		.word	TIM5_IRQHandler
+ 307 010c 00000000 		.word	SPI3_IRQHandler
+ 308 0110 00000000 		.word	UART4_IRQHandler
+ 309 0114 00000000 		.word	UART5_IRQHandler
+ 310 0118 00000000 		.word	TIM6_IRQHandler
+ 311 011c 00000000 		.word	TIM7_IRQHandler
+ 312 0120 00000000 		.word	DMA2_Channel1_IRQHandler
+ 313 0124 00000000 		.word	DMA2_Channel2_IRQHandler
+ 314 0128 00000000 		.word	DMA2_Channel3_IRQHandler
+ 315 012c 00000000 		.word	DMA2_Channel4_5_IRQHandler
+ 316              		.text
+ 317              	.Letext0:
+ 318              		.section	.debug_info,"",%progbits
+ 319              	.Ldebug_info0:
+ 320 0000 89000000 		.4byte	0x89
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 7
+
+
+ 321 0004 0400     		.2byte	0x4
+ 322 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 323 000a 04       		.byte	0x4
+ 324 000b 01       		.uleb128 0x1
+ 325 000c 880F0000 		.4byte	.LASF368
+ 326 0010 01       		.byte	0x1
+ 327 0011 4F150000 		.4byte	.LASF369
+ 328 0015 B0090000 		.4byte	.LASF370
+ 329 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 330 001d 00000000 		.4byte	0
+ 331 0021 00000000 		.4byte	.Ldebug_line0
+ 332 0025 00000000 		.4byte	.Ldebug_macro0
+ 333 0029 02       		.uleb128 0x2
+ 334 002a 03010000 		.4byte	.LASF366
+ 335 002e 01       		.byte	0x1
+ 336 002f 0301     		.2byte	0x103
+ 337 0031 3C000000 		.4byte	0x3c
+ 338 0035 03       		.uleb128 0x3
+ 339 0036 01       		.byte	0x1
+ 340 0037 08       		.byte	0x8
+ 341 0038 EA1B0000 		.4byte	.LASF364
+ 342 003c 04       		.uleb128 0x4
+ 343 003d 35000000 		.4byte	0x35
+ 344 0041 05       		.uleb128 0x5
+ 345 0042 63000000 		.4byte	0x63
+ 346 0046 51000000 		.4byte	0x51
+ 347 004a 06       		.uleb128 0x6
+ 348 004b 56000000 		.4byte	0x56
+ 349 004f 4B       		.byte	0x4b
+ 350 0050 00       		.byte	0
+ 351 0051 04       		.uleb128 0x4
+ 352 0052 41000000 		.4byte	0x41
+ 353 0056 03       		.uleb128 0x3
+ 354 0057 04       		.byte	0x4
+ 355 0058 07       		.byte	0x7
+ 356 0059 B3120000 		.4byte	.LASF365
+ 357 005d 07       		.uleb128 0x7
+ 358 005e 04       		.byte	0x4
+ 359 005f 68000000 		.4byte	0x68
+ 360 0063 04       		.uleb128 0x4
+ 361 0064 5D000000 		.4byte	0x5d
+ 362 0068 08       		.uleb128 0x8
+ 363 0069 09       		.uleb128 0x9
+ 364 006a 09060000 		.4byte	.LASF367
+ 365 006e 01       		.byte	0x1
+ 366 006f 0701     		.2byte	0x107
+ 367 0071 51000000 		.4byte	0x51
+ 368 0075 05       		.uleb128 0x5
+ 369 0076 03       		.byte	0x3
+ 370 0077 00000000 		.4byte	vectors
+ 371 007b 0A       		.uleb128 0xa
+ 372 007c E8090000 		.4byte	.LASF371
+ 373 0080 01       		.byte	0x1
+ 374 0081 14       		.byte	0x14
+ 375 0082 00000000 		.4byte	.LFB0
+ 376 0086 0E000000 		.4byte	.LFE0-.LFB0
+ 377 008a 01       		.uleb128 0x1
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 8
+
+
+ 378 008b 9C       		.byte	0x9c
+ 379 008c 00       		.byte	0
+ 380              		.section	.debug_abbrev,"",%progbits
+ 381              	.Ldebug_abbrev0:
+ 382 0000 01       		.uleb128 0x1
+ 383 0001 11       		.uleb128 0x11
+ 384 0002 01       		.byte	0x1
+ 385 0003 25       		.uleb128 0x25
+ 386 0004 0E       		.uleb128 0xe
+ 387 0005 13       		.uleb128 0x13
+ 388 0006 0B       		.uleb128 0xb
+ 389 0007 03       		.uleb128 0x3
+ 390 0008 0E       		.uleb128 0xe
+ 391 0009 1B       		.uleb128 0x1b
+ 392 000a 0E       		.uleb128 0xe
+ 393 000b 55       		.uleb128 0x55
+ 394 000c 17       		.uleb128 0x17
+ 395 000d 11       		.uleb128 0x11
+ 396 000e 01       		.uleb128 0x1
+ 397 000f 10       		.uleb128 0x10
+ 398 0010 17       		.uleb128 0x17
+ 399 0011 9942     		.uleb128 0x2119
+ 400 0013 17       		.uleb128 0x17
+ 401 0014 00       		.byte	0
+ 402 0015 00       		.byte	0
+ 403 0016 02       		.uleb128 0x2
+ 404 0017 34       		.uleb128 0x34
+ 405 0018 00       		.byte	0
+ 406 0019 03       		.uleb128 0x3
+ 407 001a 0E       		.uleb128 0xe
+ 408 001b 3A       		.uleb128 0x3a
+ 409 001c 0B       		.uleb128 0xb
+ 410 001d 3B       		.uleb128 0x3b
+ 411 001e 05       		.uleb128 0x5
+ 412 001f 49       		.uleb128 0x49
+ 413 0020 13       		.uleb128 0x13
+ 414 0021 3F       		.uleb128 0x3f
+ 415 0022 19       		.uleb128 0x19
+ 416 0023 3C       		.uleb128 0x3c
+ 417 0024 19       		.uleb128 0x19
+ 418 0025 00       		.byte	0
+ 419 0026 00       		.byte	0
+ 420 0027 03       		.uleb128 0x3
+ 421 0028 24       		.uleb128 0x24
+ 422 0029 00       		.byte	0
+ 423 002a 0B       		.uleb128 0xb
+ 424 002b 0B       		.uleb128 0xb
+ 425 002c 3E       		.uleb128 0x3e
+ 426 002d 0B       		.uleb128 0xb
+ 427 002e 03       		.uleb128 0x3
+ 428 002f 0E       		.uleb128 0xe
+ 429 0030 00       		.byte	0
+ 430 0031 00       		.byte	0
+ 431 0032 04       		.uleb128 0x4
+ 432 0033 26       		.uleb128 0x26
+ 433 0034 00       		.byte	0
+ 434 0035 49       		.uleb128 0x49
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 9
+
+
+ 435 0036 13       		.uleb128 0x13
+ 436 0037 00       		.byte	0
+ 437 0038 00       		.byte	0
+ 438 0039 05       		.uleb128 0x5
+ 439 003a 01       		.uleb128 0x1
+ 440 003b 01       		.byte	0x1
+ 441 003c 49       		.uleb128 0x49
+ 442 003d 13       		.uleb128 0x13
+ 443 003e 01       		.uleb128 0x1
+ 444 003f 13       		.uleb128 0x13
+ 445 0040 00       		.byte	0
+ 446 0041 00       		.byte	0
+ 447 0042 06       		.uleb128 0x6
+ 448 0043 21       		.uleb128 0x21
+ 449 0044 00       		.byte	0
+ 450 0045 49       		.uleb128 0x49
+ 451 0046 13       		.uleb128 0x13
+ 452 0047 2F       		.uleb128 0x2f
+ 453 0048 0B       		.uleb128 0xb
+ 454 0049 00       		.byte	0
+ 455 004a 00       		.byte	0
+ 456 004b 07       		.uleb128 0x7
+ 457 004c 0F       		.uleb128 0xf
+ 458 004d 00       		.byte	0
+ 459 004e 0B       		.uleb128 0xb
+ 460 004f 0B       		.uleb128 0xb
+ 461 0050 49       		.uleb128 0x49
+ 462 0051 13       		.uleb128 0x13
+ 463 0052 00       		.byte	0
+ 464 0053 00       		.byte	0
+ 465 0054 08       		.uleb128 0x8
+ 466 0055 15       		.uleb128 0x15
+ 467 0056 00       		.byte	0
+ 468 0057 27       		.uleb128 0x27
+ 469 0058 19       		.uleb128 0x19
+ 470 0059 00       		.byte	0
+ 471 005a 00       		.byte	0
+ 472 005b 09       		.uleb128 0x9
+ 473 005c 34       		.uleb128 0x34
+ 474 005d 00       		.byte	0
+ 475 005e 03       		.uleb128 0x3
+ 476 005f 0E       		.uleb128 0xe
+ 477 0060 3A       		.uleb128 0x3a
+ 478 0061 0B       		.uleb128 0xb
+ 479 0062 3B       		.uleb128 0x3b
+ 480 0063 05       		.uleb128 0x5
+ 481 0064 49       		.uleb128 0x49
+ 482 0065 13       		.uleb128 0x13
+ 483 0066 3F       		.uleb128 0x3f
+ 484 0067 19       		.uleb128 0x19
+ 485 0068 02       		.uleb128 0x2
+ 486 0069 18       		.uleb128 0x18
+ 487 006a 00       		.byte	0
+ 488 006b 00       		.byte	0
+ 489 006c 0A       		.uleb128 0xa
+ 490 006d 2E       		.uleb128 0x2e
+ 491 006e 00       		.byte	0
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 10
+
+
+ 492 006f 03       		.uleb128 0x3
+ 493 0070 0E       		.uleb128 0xe
+ 494 0071 3A       		.uleb128 0x3a
+ 495 0072 0B       		.uleb128 0xb
+ 496 0073 3B       		.uleb128 0x3b
+ 497 0074 0B       		.uleb128 0xb
+ 498 0075 27       		.uleb128 0x27
+ 499 0076 19       		.uleb128 0x19
+ 500 0077 11       		.uleb128 0x11
+ 501 0078 01       		.uleb128 0x1
+ 502 0079 12       		.uleb128 0x12
+ 503 007a 06       		.uleb128 0x6
+ 504 007b 40       		.uleb128 0x40
+ 505 007c 18       		.uleb128 0x18
+ 506 007d 9742     		.uleb128 0x2117
+ 507 007f 19       		.uleb128 0x19
+ 508 0080 00       		.byte	0
+ 509 0081 00       		.byte	0
+ 510 0082 00       		.byte	0
+ 511              		.section	.debug_aranges,"",%progbits
+ 512 0000 1C000000 		.4byte	0x1c
+ 513 0004 0200     		.2byte	0x2
+ 514 0006 00000000 		.4byte	.Ldebug_info0
+ 515 000a 04       		.byte	0x4
+ 516 000b 00       		.byte	0
+ 517 000c 0000     		.2byte	0
+ 518 000e 0000     		.2byte	0
+ 519 0010 00000000 		.4byte	.LFB0
+ 520 0014 0E000000 		.4byte	.LFE0-.LFB0
+ 521 0018 00000000 		.4byte	0
+ 522 001c 00000000 		.4byte	0
+ 523              		.section	.debug_ranges,"",%progbits
+ 524              	.Ldebug_ranges0:
+ 525 0000 00000000 		.4byte	.LFB0
+ 526 0004 0E000000 		.4byte	.LFE0
+ 527 0008 00000000 		.4byte	0
+ 528 000c 00000000 		.4byte	0
+ 529              		.section	.debug_macro,"",%progbits
+ 530              	.Ldebug_macro0:
+ 531 0000 0400     		.2byte	0x4
+ 532 0002 02       		.byte	0x2
+ 533 0003 00000000 		.4byte	.Ldebug_line0
+ 534 0007 07       		.byte	0x7
+ 535 0008 00000000 		.4byte	.Ldebug_macro1
+ 536 000c 03       		.byte	0x3
+ 537 000d 00       		.uleb128 0
+ 538 000e 01       		.uleb128 0x1
+ 539 000f 04       		.byte	0x4
+ 540 0010 00       		.byte	0
+ 541              		.section	.debug_macro,"G",%progbits,wm4.0.2d7fdbb0490084bf6f54c29442c0dcbf,comdat
+ 542              	.Ldebug_macro1:
+ 543 0000 0400     		.2byte	0x4
+ 544 0002 00       		.byte	0
+ 545 0003 05       		.byte	0x5
+ 546 0004 00       		.uleb128 0
+ 547 0005 AD140000 		.4byte	.LASF0
+ 548 0009 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 11
+
+
+ 549 000a 00       		.uleb128 0
+ 550 000b 2A040000 		.4byte	.LASF1
+ 551 000f 05       		.byte	0x5
+ 552 0010 00       		.uleb128 0
+ 553 0011 7E130000 		.4byte	.LASF2
+ 554 0015 05       		.byte	0x5
+ 555 0016 00       		.uleb128 0
+ 556 0017 FE0C0000 		.4byte	.LASF3
+ 557 001b 05       		.byte	0x5
+ 558 001c 00       		.uleb128 0
+ 559 001d E1030000 		.4byte	.LASF4
+ 560 0021 05       		.byte	0x5
+ 561 0022 00       		.uleb128 0
+ 562 0023 34090000 		.4byte	.LASF5
+ 563 0027 05       		.byte	0x5
+ 564 0028 00       		.uleb128 0
+ 565 0029 521A0000 		.4byte	.LASF6
+ 566 002d 05       		.byte	0x5
+ 567 002e 00       		.uleb128 0
+ 568 002f AD020000 		.4byte	.LASF7
+ 569 0033 05       		.byte	0x5
+ 570 0034 00       		.uleb128 0
+ 571 0035 FC140000 		.4byte	.LASF8
+ 572 0039 05       		.byte	0x5
+ 573 003a 00       		.uleb128 0
+ 574 003b 230C0000 		.4byte	.LASF9
+ 575 003f 05       		.byte	0x5
+ 576 0040 00       		.uleb128 0
+ 577 0041 8B210000 		.4byte	.LASF10
+ 578 0045 05       		.byte	0x5
+ 579 0046 00       		.uleb128 0
+ 580 0047 7F1E0000 		.4byte	.LASF11
+ 581 004b 05       		.byte	0x5
+ 582 004c 00       		.uleb128 0
+ 583 004d 34220000 		.4byte	.LASF12
+ 584 0051 05       		.byte	0x5
+ 585 0052 00       		.uleb128 0
+ 586 0053 23120000 		.4byte	.LASF13
+ 587 0057 05       		.byte	0x5
+ 588 0058 00       		.uleb128 0
+ 589 0059 2C1D0000 		.4byte	.LASF14
+ 590 005d 05       		.byte	0x5
+ 591 005e 00       		.uleb128 0
+ 592 005f CA0B0000 		.4byte	.LASF15
+ 593 0063 05       		.byte	0x5
+ 594 0064 00       		.uleb128 0
+ 595 0065 1D0F0000 		.4byte	.LASF16
+ 596 0069 05       		.byte	0x5
+ 597 006a 00       		.uleb128 0
+ 598 006b 2D190000 		.4byte	.LASF17
+ 599 006f 05       		.byte	0x5
+ 600 0070 00       		.uleb128 0
+ 601 0071 420A0000 		.4byte	.LASF18
+ 602 0075 05       		.byte	0x5
+ 603 0076 00       		.uleb128 0
+ 604 0077 85060000 		.4byte	.LASF19
+ 605 007b 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 12
+
+
+ 606 007c 00       		.uleb128 0
+ 607 007d 89000000 		.4byte	.LASF20
+ 608 0081 05       		.byte	0x5
+ 609 0082 00       		.uleb128 0
+ 610 0083 A2030000 		.4byte	.LASF21
+ 611 0087 05       		.byte	0x5
+ 612 0088 00       		.uleb128 0
+ 613 0089 66130000 		.4byte	.LASF22
+ 614 008d 05       		.byte	0x5
+ 615 008e 00       		.uleb128 0
+ 616 008f F7190000 		.4byte	.LASF23
+ 617 0093 05       		.byte	0x5
+ 618 0094 00       		.uleb128 0
+ 619 0095 9B0E0000 		.4byte	.LASF24
+ 620 0099 05       		.byte	0x5
+ 621 009a 00       		.uleb128 0
+ 622 009b A9190000 		.4byte	.LASF25
+ 623 009f 05       		.byte	0x5
+ 624 00a0 00       		.uleb128 0
+ 625 00a1 1E080000 		.4byte	.LASF26
+ 626 00a5 05       		.byte	0x5
+ 627 00a6 00       		.uleb128 0
+ 628 00a7 9C080000 		.4byte	.LASF27
+ 629 00ab 05       		.byte	0x5
+ 630 00ac 00       		.uleb128 0
+ 631 00ad 7A0C0000 		.4byte	.LASF28
+ 632 00b1 05       		.byte	0x5
+ 633 00b2 00       		.uleb128 0
+ 634 00b3 E6040000 		.4byte	.LASF29
+ 635 00b7 05       		.byte	0x5
+ 636 00b8 00       		.uleb128 0
+ 637 00b9 9D1D0000 		.4byte	.LASF30
+ 638 00bd 05       		.byte	0x5
+ 639 00be 00       		.uleb128 0
+ 640 00bf EA1D0000 		.4byte	.LASF31
+ 641 00c3 05       		.byte	0x5
+ 642 00c4 00       		.uleb128 0
+ 643 00c5 141A0000 		.4byte	.LASF32
+ 644 00c9 05       		.byte	0x5
+ 645 00ca 00       		.uleb128 0
+ 646 00cb FF0E0000 		.4byte	.LASF33
+ 647 00cf 05       		.byte	0x5
+ 648 00d0 00       		.uleb128 0
+ 649 00d1 440B0000 		.4byte	.LASF34
+ 650 00d5 05       		.byte	0x5
+ 651 00d6 00       		.uleb128 0
+ 652 00d7 B50E0000 		.4byte	.LASF35
+ 653 00db 05       		.byte	0x5
+ 654 00dc 00       		.uleb128 0
+ 655 00dd 5F030000 		.4byte	.LASF36
+ 656 00e1 05       		.byte	0x5
+ 657 00e2 00       		.uleb128 0
+ 658 00e3 59060000 		.4byte	.LASF37
+ 659 00e7 05       		.byte	0x5
+ 660 00e8 00       		.uleb128 0
+ 661 00e9 04080000 		.4byte	.LASF38
+ 662 00ed 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 13
+
+
+ 663 00ee 00       		.uleb128 0
+ 664 00ef FA090000 		.4byte	.LASF39
+ 665 00f3 05       		.byte	0x5
+ 666 00f4 00       		.uleb128 0
+ 667 00f5 E5080000 		.4byte	.LASF40
+ 668 00f9 05       		.byte	0x5
+ 669 00fa 00       		.uleb128 0
+ 670 00fb 9D000000 		.4byte	.LASF41
+ 671 00ff 05       		.byte	0x5
+ 672 0100 00       		.uleb128 0
+ 673 0101 11060000 		.4byte	.LASF42
+ 674 0105 05       		.byte	0x5
+ 675 0106 00       		.uleb128 0
+ 676 0107 001F0000 		.4byte	.LASF43
+ 677 010b 05       		.byte	0x5
+ 678 010c 00       		.uleb128 0
+ 679 010d 80160000 		.4byte	.LASF44
+ 680 0111 05       		.byte	0x5
+ 681 0112 00       		.uleb128 0
+ 682 0113 2B020000 		.4byte	.LASF45
+ 683 0117 05       		.byte	0x5
+ 684 0118 00       		.uleb128 0
+ 685 0119 E9180000 		.4byte	.LASF46
+ 686 011d 05       		.byte	0x5
+ 687 011e 00       		.uleb128 0
+ 688 011f FD080000 		.4byte	.LASF47
+ 689 0123 05       		.byte	0x5
+ 690 0124 00       		.uleb128 0
+ 691 0125 F0160000 		.4byte	.LASF48
+ 692 0129 05       		.byte	0x5
+ 693 012a 00       		.uleb128 0
+ 694 012b 2F1A0000 		.4byte	.LASF49
+ 695 012f 05       		.byte	0x5
+ 696 0130 00       		.uleb128 0
+ 697 0131 27230000 		.4byte	.LASF50
+ 698 0135 05       		.byte	0x5
+ 699 0136 00       		.uleb128 0
+ 700 0137 6F140000 		.4byte	.LASF51
+ 701 013b 05       		.byte	0x5
+ 702 013c 00       		.uleb128 0
+ 703 013d 14010000 		.4byte	.LASF52
+ 704 0141 05       		.byte	0x5
+ 705 0142 00       		.uleb128 0
+ 706 0143 88050000 		.4byte	.LASF53
+ 707 0147 05       		.byte	0x5
+ 708 0148 00       		.uleb128 0
+ 709 0149 89130000 		.4byte	.LASF54
+ 710 014d 05       		.byte	0x5
+ 711 014e 00       		.uleb128 0
+ 712 014f 1C090000 		.4byte	.LASF55
+ 713 0153 05       		.byte	0x5
+ 714 0154 00       		.uleb128 0
+ 715 0155 91200000 		.4byte	.LASF56
+ 716 0159 05       		.byte	0x5
+ 717 015a 00       		.uleb128 0
+ 718 015b D2110000 		.4byte	.LASF57
+ 719 015f 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 14
+
+
+ 720 0160 00       		.uleb128 0
+ 721 0161 7C1D0000 		.4byte	.LASF58
+ 722 0165 05       		.byte	0x5
+ 723 0166 00       		.uleb128 0
+ 724 0167 A9200000 		.4byte	.LASF59
+ 725 016b 05       		.byte	0x5
+ 726 016c 00       		.uleb128 0
+ 727 016d C1150000 		.4byte	.LASF60
+ 728 0171 05       		.byte	0x5
+ 729 0172 00       		.uleb128 0
+ 730 0173 D8220000 		.4byte	.LASF61
+ 731 0177 05       		.byte	0x5
+ 732 0178 00       		.uleb128 0
+ 733 0179 CC050000 		.4byte	.LASF62
+ 734 017d 05       		.byte	0x5
+ 735 017e 00       		.uleb128 0
+ 736 017f 2F1C0000 		.4byte	.LASF63
+ 737 0183 05       		.byte	0x5
+ 738 0184 00       		.uleb128 0
+ 739 0185 C41F0000 		.4byte	.LASF64
+ 740 0189 05       		.byte	0x5
+ 741 018a 00       		.uleb128 0
+ 742 018b 5A090000 		.4byte	.LASF65
+ 743 018f 05       		.byte	0x5
+ 744 0190 00       		.uleb128 0
+ 745 0191 6E1F0000 		.4byte	.LASF66
+ 746 0195 05       		.byte	0x5
+ 747 0196 00       		.uleb128 0
+ 748 0197 17110000 		.4byte	.LASF67
+ 749 019b 05       		.byte	0x5
+ 750 019c 00       		.uleb128 0
+ 751 019d 19190000 		.4byte	.LASF68
+ 752 01a1 05       		.byte	0x5
+ 753 01a2 00       		.uleb128 0
+ 754 01a3 D3100000 		.4byte	.LASF69
+ 755 01a7 05       		.byte	0x5
+ 756 01a8 00       		.uleb128 0
+ 757 01a9 4B220000 		.4byte	.LASF70
+ 758 01ad 05       		.byte	0x5
+ 759 01ae 00       		.uleb128 0
+ 760 01af 540D0000 		.4byte	.LASF71
+ 761 01b3 05       		.byte	0x5
+ 762 01b4 00       		.uleb128 0
+ 763 01b5 C0020000 		.4byte	.LASF72
+ 764 01b9 05       		.byte	0x5
+ 765 01ba 00       		.uleb128 0
+ 766 01bb AD1C0000 		.4byte	.LASF73
+ 767 01bf 05       		.byte	0x5
+ 768 01c0 00       		.uleb128 0
+ 769 01c1 BB040000 		.4byte	.LASF74
+ 770 01c5 05       		.byte	0x5
+ 771 01c6 00       		.uleb128 0
+ 772 01c7 6A0C0000 		.4byte	.LASF75
+ 773 01cb 05       		.byte	0x5
+ 774 01cc 00       		.uleb128 0
+ 775 01cd A4180000 		.4byte	.LASF76
+ 776 01d1 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 15
+
+
+ 777 01d2 00       		.uleb128 0
+ 778 01d3 9E0A0000 		.4byte	.LASF77
+ 779 01d7 05       		.byte	0x5
+ 780 01d8 00       		.uleb128 0
+ 781 01d9 8C090000 		.4byte	.LASF78
+ 782 01dd 05       		.byte	0x5
+ 783 01de 00       		.uleb128 0
+ 784 01df 6F180000 		.4byte	.LASF79
+ 785 01e3 05       		.byte	0x5
+ 786 01e4 00       		.uleb128 0
+ 787 01e5 29150000 		.4byte	.LASF80
+ 788 01e9 05       		.byte	0x5
+ 789 01ea 00       		.uleb128 0
+ 790 01eb E0010000 		.4byte	.LASF81
+ 791 01ef 05       		.byte	0x5
+ 792 01f0 00       		.uleb128 0
+ 793 01f1 961B0000 		.4byte	.LASF82
+ 794 01f5 05       		.byte	0x5
+ 795 01f6 00       		.uleb128 0
+ 796 01f7 0A200000 		.4byte	.LASF83
+ 797 01fb 05       		.byte	0x5
+ 798 01fc 00       		.uleb128 0
+ 799 01fd 1F210000 		.4byte	.LASF84
+ 800 0201 05       		.byte	0x5
+ 801 0202 00       		.uleb128 0
+ 802 0203 79120000 		.4byte	.LASF85
+ 803 0207 05       		.byte	0x5
+ 804 0208 00       		.uleb128 0
+ 805 0209 4A230000 		.4byte	.LASF86
+ 806 020d 05       		.byte	0x5
+ 807 020e 00       		.uleb128 0
+ 808 020f 180E0000 		.4byte	.LASF87
+ 809 0213 05       		.byte	0x5
+ 810 0214 00       		.uleb128 0
+ 811 0215 7D0A0000 		.4byte	.LASF88
+ 812 0219 05       		.byte	0x5
+ 813 021a 00       		.uleb128 0
+ 814 021b CD070000 		.4byte	.LASF89
+ 815 021f 05       		.byte	0x5
+ 816 0220 00       		.uleb128 0
+ 817 0221 AD130000 		.4byte	.LASF90
+ 818 0225 05       		.byte	0x5
+ 819 0226 00       		.uleb128 0
+ 820 0227 D90C0000 		.4byte	.LASF91
+ 821 022b 05       		.byte	0x5
+ 822 022c 00       		.uleb128 0
+ 823 022d B8230000 		.4byte	.LASF92
+ 824 0231 05       		.byte	0x5
+ 825 0232 00       		.uleb128 0
+ 826 0233 CB0C0000 		.4byte	.LASF93
+ 827 0237 05       		.byte	0x5
+ 828 0238 00       		.uleb128 0
+ 829 0239 0E170000 		.4byte	.LASF94
+ 830 023d 05       		.byte	0x5
+ 831 023e 00       		.uleb128 0
+ 832 023f 790F0000 		.4byte	.LASF95
+ 833 0243 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 16
+
+
+ 834 0244 00       		.uleb128 0
+ 835 0245 B51A0000 		.4byte	.LASF96
+ 836 0249 05       		.byte	0x5
+ 837 024a 00       		.uleb128 0
+ 838 024b FA0A0000 		.4byte	.LASF97
+ 839 024f 05       		.byte	0x5
+ 840 0250 00       		.uleb128 0
+ 841 0251 E0050000 		.4byte	.LASF98
+ 842 0255 05       		.byte	0x5
+ 843 0256 00       		.uleb128 0
+ 844 0257 EE000000 		.4byte	.LASF99
+ 845 025b 05       		.byte	0x5
+ 846 025c 00       		.uleb128 0
+ 847 025d 34120000 		.4byte	.LASF100
+ 848 0261 05       		.byte	0x5
+ 849 0262 00       		.uleb128 0
+ 850 0263 04230000 		.4byte	.LASF101
+ 851 0267 05       		.byte	0x5
+ 852 0268 00       		.uleb128 0
+ 853 0269 C9080000 		.4byte	.LASF102
+ 854 026d 05       		.byte	0x5
+ 855 026e 00       		.uleb128 0
+ 856 026f 09190000 		.4byte	.LASF103
+ 857 0273 05       		.byte	0x5
+ 858 0274 00       		.uleb128 0
+ 859 0275 C81D0000 		.4byte	.LASF104
+ 860 0279 05       		.byte	0x5
+ 861 027a 00       		.uleb128 0
+ 862 027b 5A1E0000 		.4byte	.LASF105
+ 863 027f 05       		.byte	0x5
+ 864 0280 00       		.uleb128 0
+ 865 0281 85170000 		.4byte	.LASF106
+ 866 0285 05       		.byte	0x5
+ 867 0286 00       		.uleb128 0
+ 868 0287 4D1C0000 		.4byte	.LASF107
+ 869 028b 05       		.byte	0x5
+ 870 028c 00       		.uleb128 0
+ 871 028d F8010000 		.4byte	.LASF108
+ 872 0291 05       		.byte	0x5
+ 873 0292 00       		.uleb128 0
+ 874 0293 EC1F0000 		.4byte	.LASF109
+ 875 0297 05       		.byte	0x5
+ 876 0298 00       		.uleb128 0
+ 877 0299 4C0C0000 		.4byte	.LASF110
+ 878 029d 05       		.byte	0x5
+ 879 029e 00       		.uleb128 0
+ 880 029f F6130000 		.4byte	.LASF111
+ 881 02a3 05       		.byte	0x5
+ 882 02a4 00       		.uleb128 0
+ 883 02a5 00000000 		.4byte	.LASF112
+ 884 02a9 05       		.byte	0x5
+ 885 02aa 00       		.uleb128 0
+ 886 02ab 93070000 		.4byte	.LASF113
+ 887 02af 05       		.byte	0x5
+ 888 02b0 00       		.uleb128 0
+ 889 02b1 3E1D0000 		.4byte	.LASF114
+ 890 02b5 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 17
+
+
+ 891 02b6 00       		.uleb128 0
+ 892 02b7 810B0000 		.4byte	.LASF115
+ 893 02bb 05       		.byte	0x5
+ 894 02bc 00       		.uleb128 0
+ 895 02bd B3070000 		.4byte	.LASF116
+ 896 02c1 05       		.byte	0x5
+ 897 02c2 00       		.uleb128 0
+ 898 02c3 B8140000 		.4byte	.LASF117
+ 899 02c7 05       		.byte	0x5
+ 900 02c8 00       		.uleb128 0
+ 901 02c9 EA1A0000 		.4byte	.LASF118
+ 902 02cd 05       		.byte	0x5
+ 903 02ce 00       		.uleb128 0
+ 904 02cf D4140000 		.4byte	.LASF119
+ 905 02d3 05       		.byte	0x5
+ 906 02d4 00       		.uleb128 0
+ 907 02d5 D3180000 		.4byte	.LASF120
+ 908 02d9 05       		.byte	0x5
+ 909 02da 00       		.uleb128 0
+ 910 02db 220D0000 		.4byte	.LASF121
+ 911 02df 05       		.byte	0x5
+ 912 02e0 00       		.uleb128 0
+ 913 02e1 D0010000 		.4byte	.LASF122
+ 914 02e5 05       		.byte	0x5
+ 915 02e6 00       		.uleb128 0
+ 916 02e7 52130000 		.4byte	.LASF123
+ 917 02eb 05       		.byte	0x5
+ 918 02ec 00       		.uleb128 0
+ 919 02ed E10B0000 		.4byte	.LASF124
+ 920 02f1 05       		.byte	0x5
+ 921 02f2 00       		.uleb128 0
+ 922 02f3 3B0E0000 		.4byte	.LASF125
+ 923 02f7 05       		.byte	0x5
+ 924 02f8 00       		.uleb128 0
+ 925 02f9 5D210000 		.4byte	.LASF126
+ 926 02fd 05       		.byte	0x5
+ 927 02fe 00       		.uleb128 0
+ 928 02ff 2A100000 		.4byte	.LASF127
+ 929 0303 05       		.byte	0x5
+ 930 0304 00       		.uleb128 0
+ 931 0305 360C0000 		.4byte	.LASF128
+ 932 0309 05       		.byte	0x5
+ 933 030a 00       		.uleb128 0
+ 934 030b BC110000 		.4byte	.LASF129
+ 935 030f 05       		.byte	0x5
+ 936 0310 00       		.uleb128 0
+ 937 0311 B0170000 		.4byte	.LASF130
+ 938 0315 05       		.byte	0x5
+ 939 0316 00       		.uleb128 0
+ 940 0317 32050000 		.4byte	.LASF131
+ 941 031b 05       		.byte	0x5
+ 942 031c 00       		.uleb128 0
+ 943 031d 82190000 		.4byte	.LASF132
+ 944 0321 05       		.byte	0x5
+ 945 0322 00       		.uleb128 0
+ 946 0323 57190000 		.4byte	.LASF133
+ 947 0327 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 18
+
+
+ 948 0328 00       		.uleb128 0
+ 949 0329 67070000 		.4byte	.LASF134
+ 950 032d 05       		.byte	0x5
+ 951 032e 00       		.uleb128 0
+ 952 032f 961C0000 		.4byte	.LASF135
+ 953 0333 05       		.byte	0x5
+ 954 0334 00       		.uleb128 0
+ 955 0335 DA0D0000 		.4byte	.LASF136
+ 956 0339 05       		.byte	0x5
+ 957 033a 00       		.uleb128 0
+ 958 033b 62050000 		.4byte	.LASF137
+ 959 033f 05       		.byte	0x5
+ 960 0340 00       		.uleb128 0
+ 961 0341 97110000 		.4byte	.LASF138
+ 962 0345 05       		.byte	0x5
+ 963 0346 00       		.uleb128 0
+ 964 0347 D21B0000 		.4byte	.LASF139
+ 965 034b 05       		.byte	0x5
+ 966 034c 00       		.uleb128 0
+ 967 034d FE230000 		.4byte	.LASF140
+ 968 0351 05       		.byte	0x5
+ 969 0352 00       		.uleb128 0
+ 970 0353 98140000 		.4byte	.LASF141
+ 971 0357 05       		.byte	0x5
+ 972 0358 00       		.uleb128 0
+ 973 0359 40190000 		.4byte	.LASF142
+ 974 035d 05       		.byte	0x5
+ 975 035e 00       		.uleb128 0
+ 976 035f 80110000 		.4byte	.LASF143
+ 977 0363 05       		.byte	0x5
+ 978 0364 00       		.uleb128 0
+ 979 0365 79010000 		.4byte	.LASF144
+ 980 0369 05       		.byte	0x5
+ 981 036a 00       		.uleb128 0
+ 982 036b A2160000 		.4byte	.LASF145
+ 983 036f 05       		.byte	0x5
+ 984 0370 00       		.uleb128 0
+ 985 0371 281E0000 		.4byte	.LASF146
+ 986 0375 05       		.byte	0x5
+ 987 0376 00       		.uleb128 0
+ 988 0377 1C130000 		.4byte	.LASF147
+ 989 037b 05       		.byte	0x5
+ 990 037c 00       		.uleb128 0
+ 991 037d 2A240000 		.4byte	.LASF148
+ 992 0381 05       		.byte	0x5
+ 993 0382 00       		.uleb128 0
+ 994 0383 B1030000 		.4byte	.LASF149
+ 995 0387 05       		.byte	0x5
+ 996 0388 00       		.uleb128 0
+ 997 0389 45210000 		.4byte	.LASF150
+ 998 038d 05       		.byte	0x5
+ 999 038e 00       		.uleb128 0
+ 1000 038f FD1B0000 		.4byte	.LASF151
+ 1001 0393 05       		.byte	0x5
+ 1002 0394 00       		.uleb128 0
+ 1003 0395 E3150000 		.4byte	.LASF152
+ 1004 0399 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 19
+
+
+ 1005 039a 00       		.uleb128 0
+ 1006 039b C8030000 		.4byte	.LASF153
+ 1007 039f 05       		.byte	0x5
+ 1008 03a0 00       		.uleb128 0
+ 1009 03a1 F4110000 		.4byte	.LASF154
+ 1010 03a5 05       		.byte	0x5
+ 1011 03a6 00       		.uleb128 0
+ 1012 03a7 43060000 		.4byte	.LASF155
+ 1013 03ab 05       		.byte	0x5
+ 1014 03ac 00       		.uleb128 0
+ 1015 03ad E31C0000 		.4byte	.LASF156
+ 1016 03b1 05       		.byte	0x5
+ 1017 03b2 00       		.uleb128 0
+ 1018 03b3 51040000 		.4byte	.LASF157
+ 1019 03b7 05       		.byte	0x5
+ 1020 03b8 00       		.uleb128 0
+ 1021 03b9 95040000 		.4byte	.LASF158
+ 1022 03bd 05       		.byte	0x5
+ 1023 03be 00       		.uleb128 0
+ 1024 03bf F20D0000 		.4byte	.LASF159
+ 1025 03c3 05       		.byte	0x5
+ 1026 03c4 00       		.uleb128 0
+ 1027 03c5 07160000 		.4byte	.LASF160
+ 1028 03c9 05       		.byte	0x5
+ 1029 03ca 00       		.uleb128 0
+ 1030 03cb D9120000 		.4byte	.LASF161
+ 1031 03cf 05       		.byte	0x5
+ 1032 03d0 00       		.uleb128 0
+ 1033 03d1 B21D0000 		.4byte	.LASF162
+ 1034 03d5 05       		.byte	0x5
+ 1035 03d6 00       		.uleb128 0
+ 1036 03d7 4F070000 		.4byte	.LASF163
+ 1037 03db 05       		.byte	0x5
+ 1038 03dc 00       		.uleb128 0
+ 1039 03dd 130A0000 		.4byte	.LASF164
+ 1040 03e1 05       		.byte	0x5
+ 1041 03e2 00       		.uleb128 0
+ 1042 03e3 D51A0000 		.4byte	.LASF165
+ 1043 03e7 05       		.byte	0x5
+ 1044 03e8 00       		.uleb128 0
+ 1045 03e9 A9150000 		.4byte	.LASF166
+ 1046 03ed 05       		.byte	0x5
+ 1047 03ee 00       		.uleb128 0
+ 1048 03ef 2E060000 		.4byte	.LASF167
+ 1049 03f3 05       		.byte	0x5
+ 1050 03f4 00       		.uleb128 0
+ 1051 03f5 15020000 		.4byte	.LASF168
+ 1052 03f9 05       		.byte	0x5
+ 1053 03fa 00       		.uleb128 0
+ 1054 03fb 380D0000 		.4byte	.LASF169
+ 1055 03ff 05       		.byte	0x5
+ 1056 0400 00       		.uleb128 0
+ 1057 0401 5D200000 		.4byte	.LASF170
+ 1058 0405 05       		.byte	0x5
+ 1059 0406 00       		.uleb128 0
+ 1060 0407 471F0000 		.4byte	.LASF171
+ 1061 040b 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 20
+
+
+ 1062 040c 00       		.uleb128 0
+ 1063 040d BA010000 		.4byte	.LASF172
+ 1064 0411 05       		.byte	0x5
+ 1065 0412 00       		.uleb128 0
+ 1066 0413 6C170000 		.4byte	.LASF173
+ 1067 0417 05       		.byte	0x5
+ 1068 0418 00       		.uleb128 0
+ 1069 0419 06130000 		.4byte	.LASF174
+ 1070 041d 05       		.byte	0x5
+ 1071 041e 00       		.uleb128 0
+ 1072 041f E7230000 		.4byte	.LASF175
+ 1073 0423 05       		.byte	0x5
+ 1074 0424 00       		.uleb128 0
+ 1075 0425 78100000 		.4byte	.LASF176
+ 1076 0429 05       		.byte	0x5
+ 1077 042a 00       		.uleb128 0
+ 1078 042b 0F150000 		.4byte	.LASF177
+ 1079 042f 05       		.byte	0x5
+ 1080 0430 00       		.uleb128 0
+ 1081 0431 01050000 		.4byte	.LASF178
+ 1082 0435 05       		.byte	0x5
+ 1083 0436 00       		.uleb128 0
+ 1084 0437 29170000 		.4byte	.LASF179
+ 1085 043b 05       		.byte	0x5
+ 1086 043c 00       		.uleb128 0
+ 1087 043d 3E110000 		.4byte	.LASF180
+ 1088 0441 05       		.byte	0x5
+ 1089 0442 00       		.uleb128 0
+ 1090 0443 61120000 		.4byte	.LASF181
+ 1091 0447 05       		.byte	0x5
+ 1092 0448 00       		.uleb128 0
+ 1093 0449 A0220000 		.4byte	.LASF182
+ 1094 044d 05       		.byte	0x5
+ 1095 044e 00       		.uleb128 0
+ 1096 044f 1E140000 		.4byte	.LASF183
+ 1097 0453 05       		.byte	0x5
+ 1098 0454 00       		.uleb128 0
+ 1099 0455 E51E0000 		.4byte	.LASF184
+ 1100 0459 05       		.byte	0x5
+ 1101 045a 00       		.uleb128 0
+ 1102 045b A01E0000 		.4byte	.LASF185
+ 1103 045f 05       		.byte	0x5
+ 1104 0460 00       		.uleb128 0
+ 1105 0461 6E110000 		.4byte	.LASF186
+ 1106 0465 05       		.byte	0x5
+ 1107 0466 00       		.uleb128 0
+ 1108 0467 D4040000 		.4byte	.LASF187
+ 1109 046b 05       		.byte	0x5
+ 1110 046c 00       		.uleb128 0
+ 1111 046d 04180000 		.4byte	.LASF188
+ 1112 0471 05       		.byte	0x5
+ 1113 0472 00       		.uleb128 0
+ 1114 0473 E10A0000 		.4byte	.LASF189
+ 1115 0477 05       		.byte	0x5
+ 1116 0478 00       		.uleb128 0
+ 1117 0479 43030000 		.4byte	.LASF190
+ 1118 047d 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 21
+
+
+ 1119 047e 00       		.uleb128 0
+ 1120 047f 64040000 		.4byte	.LASF191
+ 1121 0483 05       		.byte	0x5
+ 1122 0484 00       		.uleb128 0
+ 1123 0485 451B0000 		.4byte	.LASF192
+ 1124 0489 05       		.byte	0x5
+ 1125 048a 00       		.uleb128 0
+ 1126 048b D80E0000 		.4byte	.LASF193
+ 1127 048f 05       		.byte	0x5
+ 1128 0490 00       		.uleb128 0
+ 1129 0491 800E0000 		.4byte	.LASF194
+ 1130 0495 05       		.byte	0x5
+ 1131 0496 00       		.uleb128 0
+ 1132 0497 4B010000 		.4byte	.LASF195
+ 1133 049b 05       		.byte	0x5
+ 1134 049c 00       		.uleb128 0
+ 1135 049d 9E060000 		.4byte	.LASF196
+ 1136 04a1 05       		.byte	0x5
+ 1137 04a2 00       		.uleb128 0
+ 1138 04a3 CB200000 		.4byte	.LASF197
+ 1139 04a7 05       		.byte	0x5
+ 1140 04a8 00       		.uleb128 0
+ 1141 04a9 76200000 		.4byte	.LASF198
+ 1142 04ad 05       		.byte	0x5
+ 1143 04ae 00       		.uleb128 0
+ 1144 04af EF200000 		.4byte	.LASF199
+ 1145 04b3 05       		.byte	0x5
+ 1146 04b4 00       		.uleb128 0
+ 1147 04b5 65080000 		.4byte	.LASF200
+ 1148 04b9 05       		.byte	0x5
+ 1149 04ba 00       		.uleb128 0
+ 1150 04bb 9E100000 		.4byte	.LASF201
+ 1151 04bf 05       		.byte	0x5
+ 1152 04c0 00       		.uleb128 0
+ 1153 04c1 231F0000 		.4byte	.LASF202
+ 1154 04c5 05       		.byte	0x5
+ 1155 04c6 00       		.uleb128 0
+ 1156 04c7 D1160000 		.4byte	.LASF203
+ 1157 04cb 05       		.byte	0x5
+ 1158 04cc 00       		.uleb128 0
+ 1159 04cd 640E0000 		.4byte	.LASF204
+ 1160 04d1 05       		.byte	0x5
+ 1161 04d2 00       		.uleb128 0
+ 1162 04d3 121C0000 		.4byte	.LASF205
+ 1163 04d7 05       		.byte	0x5
+ 1164 04d8 00       		.uleb128 0
+ 1165 04d9 C0100000 		.4byte	.LASF206
+ 1166 04dd 05       		.byte	0x5
+ 1167 04de 00       		.uleb128 0
+ 1168 04df 76050000 		.4byte	.LASF207
+ 1169 04e3 05       		.byte	0x5
+ 1170 04e4 00       		.uleb128 0
+ 1171 04e5 5E1D0000 		.4byte	.LASF208
+ 1172 04e9 05       		.byte	0x5
+ 1173 04ea 00       		.uleb128 0
+ 1174 04eb 45080000 		.4byte	.LASF209
+ 1175 04ef 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 22
+
+
+ 1176 04f0 00       		.uleb128 0
+ 1177 04f1 BC120000 		.4byte	.LASF210
+ 1178 04f5 05       		.byte	0x5
+ 1179 04f6 00       		.uleb128 0
+ 1180 04f7 2A110000 		.4byte	.LASF211
+ 1181 04fb 05       		.byte	0x5
+ 1182 04fc 00       		.uleb128 0
+ 1183 04fd 0F0D0000 		.4byte	.LASF212
+ 1184 0501 05       		.byte	0x5
+ 1185 0502 00       		.uleb128 0
+ 1186 0503 B5050000 		.4byte	.LASF213
+ 1187 0507 05       		.byte	0x5
+ 1188 0508 00       		.uleb128 0
+ 1189 0509 3F240000 		.4byte	.LASF214
+ 1190 050d 05       		.byte	0x5
+ 1191 050e 00       		.uleb128 0
+ 1192 050f EF0B0000 		.4byte	.LASF215
+ 1193 0513 05       		.byte	0x5
+ 1194 0514 00       		.uleb128 0
+ 1195 0515 71060000 		.4byte	.LASF216
+ 1196 0519 05       		.byte	0x5
+ 1197 051a 00       		.uleb128 0
+ 1198 051b DC200000 		.4byte	.LASF217
+ 1199 051f 05       		.byte	0x5
+ 1200 0520 00       		.uleb128 0
+ 1201 0521 9E210000 		.4byte	.LASF218
+ 1202 0525 05       		.byte	0x5
+ 1203 0526 00       		.uleb128 0
+ 1204 0527 B0060000 		.4byte	.LASF219
+ 1205 052b 05       		.byte	0x5
+ 1206 052c 00       		.uleb128 0
+ 1207 052d AB0B0000 		.4byte	.LASF220
+ 1208 0531 05       		.byte	0x5
+ 1209 0532 00       		.uleb128 0
+ 1210 0533 76210000 		.4byte	.LASF221
+ 1211 0537 05       		.byte	0x5
+ 1212 0538 00       		.uleb128 0
+ 1213 0539 BF180000 		.4byte	.LASF222
+ 1214 053d 05       		.byte	0x5
+ 1215 053e 00       		.uleb128 0
+ 1216 053f 67020000 		.4byte	.LASF223
+ 1217 0543 05       		.byte	0x5
+ 1218 0544 00       		.uleb128 0
+ 1219 0545 40170000 		.4byte	.LASF224
+ 1220 0549 05       		.byte	0x5
+ 1221 054a 00       		.uleb128 0
+ 1222 054b 0B1D0000 		.4byte	.LASF225
+ 1223 054f 05       		.byte	0x5
+ 1224 0550 00       		.uleb128 0
+ 1225 0551 351F0000 		.4byte	.LASF226
+ 1226 0555 05       		.byte	0x5
+ 1227 0556 00       		.uleb128 0
+ 1228 0557 18240000 		.4byte	.LASF227
+ 1229 055b 05       		.byte	0x5
+ 1230 055c 00       		.uleb128 0
+ 1231 055d 741C0000 		.4byte	.LASF228
+ 1232 0561 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 23
+
+
+ 1233 0562 00       		.uleb128 0
+ 1234 0563 181B0000 		.4byte	.LASF229
+ 1235 0567 05       		.byte	0x5
+ 1236 0568 00       		.uleb128 0
+ 1237 0569 FB020000 		.4byte	.LASF230
+ 1238 056d 05       		.byte	0x5
+ 1239 056e 00       		.uleb128 0
+ 1240 056f BE1C0000 		.4byte	.LASF231
+ 1241 0573 05       		.byte	0x5
+ 1242 0574 00       		.uleb128 0
+ 1243 0575 E4190000 		.4byte	.LASF232
+ 1244 0579 05       		.byte	0x5
+ 1245 057a 00       		.uleb128 0
+ 1246 057b 1D220000 		.4byte	.LASF233
+ 1247 057f 05       		.byte	0x5
+ 1248 0580 00       		.uleb128 0
+ 1249 0581 560A0000 		.4byte	.LASF234
+ 1250 0585 05       		.byte	0x5
+ 1251 0586 00       		.uleb128 0
+ 1252 0587 77040000 		.4byte	.LASF235
+ 1253 058b 05       		.byte	0x5
+ 1254 058c 00       		.uleb128 0
+ 1255 058d 331B0000 		.4byte	.LASF236
+ 1256 0591 05       		.byte	0x5
+ 1257 0592 00       		.uleb128 0
+ 1258 0593 48090000 		.4byte	.LASF237
+ 1259 0597 05       		.byte	0x5
+ 1260 0598 00       		.uleb128 0
+ 1261 0599 89230000 		.4byte	.LASF238
+ 1262 059d 05       		.byte	0x5
+ 1263 059e 00       		.uleb128 0
+ 1264 059f FA1A0000 		.4byte	.LASF239
+ 1265 05a3 05       		.byte	0x5
+ 1266 05a4 00       		.uleb128 0
+ 1267 05a5 0F100000 		.4byte	.LASF240
+ 1268 05a9 05       		.byte	0x5
+ 1269 05aa 00       		.uleb128 0
+ 1270 05ab D4170000 		.4byte	.LASF241
+ 1271 05af 05       		.byte	0x5
+ 1272 05b0 00       		.uleb128 0
+ 1273 05b1 BA0D0000 		.4byte	.LASF242
+ 1274 05b5 05       		.byte	0x5
+ 1275 05b6 00       		.uleb128 0
+ 1276 05b7 64220000 		.4byte	.LASF243
+ 1277 05bb 05       		.byte	0x5
+ 1278 05bc 00       		.uleb128 0
+ 1279 05bd C8090000 		.4byte	.LASF244
+ 1280 05c1 05       		.byte	0x5
+ 1281 05c2 00       		.uleb128 0
+ 1282 05c3 E7170000 		.4byte	.LASF245
+ 1283 05c7 05       		.byte	0x5
+ 1284 05c8 00       		.uleb128 0
+ 1285 05c9 DE210000 		.4byte	.LASF246
+ 1286 05cd 05       		.byte	0x5
+ 1287 05ce 00       		.uleb128 0
+ 1288 05cf 07040000 		.4byte	.LASF247
+ 1289 05d3 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 24
+
+
+ 1290 05d4 00       		.uleb128 0
+ 1291 05d5 EB0F0000 		.4byte	.LASF248
+ 1292 05d9 05       		.byte	0x5
+ 1293 05da 00       		.uleb128 0
+ 1294 05db 741A0000 		.4byte	.LASF249
+ 1295 05df 05       		.byte	0x5
+ 1296 05e0 00       		.uleb128 0
+ 1297 05e1 7D150000 		.4byte	.LASF250
+ 1298 05e5 05       		.byte	0x5
+ 1299 05e6 00       		.uleb128 0
+ 1300 05e7 81030000 		.4byte	.LASF251
+ 1301 05eb 05       		.byte	0x5
+ 1302 05ec 00       		.uleb128 0
+ 1303 05ed 671B0000 		.4byte	.LASF252
+ 1304 05f1 05       		.byte	0x5
+ 1305 05f2 00       		.uleb128 0
+ 1306 05f3 37200000 		.4byte	.LASF253
+ 1307 05f7 05       		.byte	0x5
+ 1308 05f8 00       		.uleb128 0
+ 1309 05f9 E9060000 		.4byte	.LASF254
+ 1310 05fd 05       		.byte	0x5
+ 1311 05fe 00       		.uleb128 0
+ 1312 05ff BA000000 		.4byte	.LASF255
+ 1313 0603 05       		.byte	0x5
+ 1314 0604 00       		.uleb128 0
+ 1315 0605 31210000 		.4byte	.LASF256
+ 1316 0609 05       		.byte	0x5
+ 1317 060a 00       		.uleb128 0
+ 1318 060b CA210000 		.4byte	.LASF257
+ 1319 060f 05       		.byte	0x5
+ 1320 0610 00       		.uleb128 0
+ 1321 0611 8F0C0000 		.4byte	.LASF258
+ 1322 0615 05       		.byte	0x5
+ 1323 0616 00       		.uleb128 0
+ 1324 0617 3E100000 		.4byte	.LASF259
+ 1325 061b 05       		.byte	0x5
+ 1326 061c 00       		.uleb128 0
+ 1327 061d B9220000 		.4byte	.LASF260
+ 1328 0621 05       		.byte	0x5
+ 1329 0622 00       		.uleb128 0
+ 1330 0623 D9000000 		.4byte	.LASF261
+ 1331 0627 05       		.byte	0x5
+ 1332 0628 00       		.uleb128 0
+ 1333 0629 59110000 		.4byte	.LASF262
+ 1334 062d 05       		.byte	0x5
+ 1335 062e 00       		.uleb128 0
+ 1336 062f 9C1A0000 		.4byte	.LASF263
+ 1337 0633 05       		.byte	0x5
+ 1338 0634 00       		.uleb128 0
+ 1339 0635 F1210000 		.4byte	.LASF264
+ 1340 0639 05       		.byte	0x5
+ 1341 063a 00       		.uleb128 0
+ 1342 063b 80020000 		.4byte	.LASF265
+ 1343 063f 05       		.byte	0x5
+ 1344 0640 00       		.uleb128 0
+ 1345 0641 64160000 		.4byte	.LASF266
+ 1346 0645 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 25
+
+
+ 1347 0646 00       		.uleb128 0
+ 1348 0647 09110000 		.4byte	.LASF267
+ 1349 064b 05       		.byte	0x5
+ 1350 064c 00       		.uleb128 0
+ 1351 064d 1F000000 		.4byte	.LASF268
+ 1352 0651 05       		.byte	0x5
+ 1353 0652 00       		.uleb128 0
+ 1354 0653 C41B0000 		.4byte	.LASF269
+ 1355 0657 05       		.byte	0x5
+ 1356 0658 00       		.uleb128 0
+ 1357 0659 4D0F0000 		.4byte	.LASF270
+ 1358 065d 05       		.byte	0x5
+ 1359 065e 00       		.uleb128 0
+ 1360 065f B70A0000 		.4byte	.LASF271
+ 1361 0663 05       		.byte	0x5
+ 1362 0664 00       		.uleb128 0
+ 1363 0665 7B1B0000 		.4byte	.LASF272
+ 1364 0669 05       		.byte	0x5
+ 1365 066a 00       		.uleb128 0
+ 1366 066b 61180000 		.4byte	.LASF273
+ 1367 066f 05       		.byte	0x5
+ 1368 0670 00       		.uleb128 0
+ 1369 0671 641C0000 		.4byte	.LASF274
+ 1370 0675 05       		.byte	0x5
+ 1371 0676 00       		.uleb128 0
+ 1372 0677 900A0000 		.4byte	.LASF275
+ 1373 067b 05       		.byte	0x5
+ 1374 067c 00       		.uleb128 0
+ 1375 067d C9130000 		.4byte	.LASF276
+ 1376 0681 05       		.byte	0x5
+ 1377 0682 00       		.uleb128 0
+ 1378 0683 55160000 		.4byte	.LASF277
+ 1379 0687 05       		.byte	0x5
+ 1380 0688 00       		.uleb128 0
+ 1381 0689 69010000 		.4byte	.LASF278
+ 1382 068d 05       		.byte	0x5
+ 1383 068e 00       		.uleb128 0
+ 1384 068f 6B000000 		.4byte	.LASF279
+ 1385 0693 05       		.byte	0x5
+ 1386 0694 00       		.uleb128 0
+ 1387 0695 EF0E0000 		.4byte	.LASF280
+ 1388 0699 05       		.byte	0x5
+ 1389 069a 00       		.uleb128 0
+ 1390 069b 30160000 		.4byte	.LASF281
+ 1391 069f 05       		.byte	0x5
+ 1392 06a0 00       		.uleb128 0
+ 1393 06a1 B41B0000 		.4byte	.LASF282
+ 1394 06a5 05       		.byte	0x5
+ 1395 06a6 00       		.uleb128 0
+ 1396 06a7 9A150000 		.4byte	.LASF283
+ 1397 06ab 05       		.byte	0x5
+ 1398 06ac 00       		.uleb128 0
+ 1399 06ad 2E000000 		.4byte	.LASF284
+ 1400 06b1 05       		.byte	0x5
+ 1401 06b2 00       		.uleb128 0
+ 1402 06b3 B1100000 		.4byte	.LASF285
+ 1403 06b7 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 26
+
+
+ 1404 06b8 00       		.uleb128 0
+ 1405 06b9 EF1B0000 		.4byte	.LASF286
+ 1406 06bd 05       		.byte	0x5
+ 1407 06be 00       		.uleb128 0
+ 1408 06bf 72160000 		.4byte	.LASF287
+ 1409 06c3 05       		.byte	0x5
+ 1410 06c4 00       		.uleb128 0
+ 1411 06c5 581B0000 		.4byte	.LASF288
+ 1412 06c9 05       		.byte	0x5
+ 1413 06ca 00       		.uleb128 0
+ 1414 06cb 3C010000 		.4byte	.LASF289
+ 1415 06cf 05       		.byte	0x5
+ 1416 06d0 00       		.uleb128 0
+ 1417 06d1 5C0F0000 		.4byte	.LASF290
+ 1418 06d5 05       		.byte	0x5
+ 1419 06d6 00       		.uleb128 0
+ 1420 06d7 651A0000 		.4byte	.LASF291
+ 1421 06db 05       		.byte	0x5
+ 1422 06dc 00       		.uleb128 0
+ 1423 06dd 4E200000 		.4byte	.LASF292
+ 1424 06e1 05       		.byte	0x5
+ 1425 06e2 00       		.uleb128 0
+ 1426 06e3 40070000 		.4byte	.LASF293
+ 1427 06e7 05       		.byte	0x5
+ 1428 06e8 00       		.uleb128 0
+ 1429 06e9 701E0000 		.4byte	.LASF294
+ 1430 06ed 05       		.byte	0x5
+ 1431 06ee 00       		.uleb128 0
+ 1432 06ef 7A000000 		.4byte	.LASF295
+ 1433 06f3 05       		.byte	0x5
+ 1434 06f4 00       		.uleb128 0
+ 1435 06f5 79220000 		.4byte	.LASF296
+ 1436 06f9 05       		.byte	0x5
+ 1437 06fa 00       		.uleb128 0
+ 1438 06fb 68100000 		.4byte	.LASF297
+ 1439 06ff 05       		.byte	0x5
+ 1440 0700 00       		.uleb128 0
+ 1441 0701 1A040000 		.4byte	.LASF298
+ 1442 0705 05       		.byte	0x5
+ 1443 0706 00       		.uleb128 0
+ 1444 0707 F7030000 		.4byte	.LASF299
+ 1445 070b 05       		.byte	0x5
+ 1446 070c 00       		.uleb128 0
+ 1447 070d 5B000000 		.4byte	.LASF300
+ 1448 0711 05       		.byte	0x5
+ 1449 0712 00       		.uleb128 0
+ 1450 0713 EC140000 		.4byte	.LASF301
+ 1451 0717 05       		.byte	0x5
+ 1452 0718 00       		.uleb128 0
+ 1453 0719 6C0B0000 		.4byte	.LASF302
+ 1454 071d 05       		.byte	0x5
+ 1455 071e 00       		.uleb128 0
+ 1456 071f 89220000 		.4byte	.LASF303
+ 1457 0723 05       		.byte	0x5
+ 1458 0724 00       		.uleb128 0
+ 1459 0725 3F160000 		.4byte	.LASF304
+ 1460 0729 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 27
+
+
+ 1461 072a 00       		.uleb128 0
+ 1462 072b FB1C0000 		.4byte	.LASF305
+ 1463 072f 05       		.byte	0x5
+ 1464 0730 00       		.uleb128 0
+ 1465 0731 4D120000 		.4byte	.LASF306
+ 1466 0735 05       		.byte	0x5
+ 1467 0736 00       		.uleb128 0
+ 1468 0737 64230000 		.4byte	.LASF307
+ 1469 073b 05       		.byte	0x5
+ 1470 073c 00       		.uleb128 0
+ 1471 073d 851F0000 		.4byte	.LASF308
+ 1472 0741 05       		.byte	0x5
+ 1473 0742 00       		.uleb128 0
+ 1474 0743 8E120000 		.4byte	.LASF309
+ 1475 0747 05       		.byte	0x5
+ 1476 0748 00       		.uleb128 0
+ 1477 0749 7B0D0000 		.4byte	.LASF310
+ 1478 074d 05       		.byte	0x5
+ 1479 074e 00       		.uleb128 0
+ 1480 074f 5F150000 		.4byte	.LASF311
+ 1481 0753 05       		.byte	0x5
+ 1482 0754 00       		.uleb128 0
+ 1483 0755 061E0000 		.4byte	.LASF312
+ 1484 0759 05       		.byte	0x5
+ 1485 075a 00       		.uleb128 0
+ 1486 075b 0E0B0000 		.4byte	.LASF313
+ 1487 075f 05       		.byte	0x5
+ 1488 0760 00       		.uleb128 0
+ 1489 0761 E3070000 		.4byte	.LASF314
+ 1490 0765 05       		.byte	0x5
+ 1491 0766 00       		.uleb128 0
+ 1492 0767 85180000 		.4byte	.LASF315
+ 1493 076b 05       		.byte	0x5
+ 1494 076c 00       		.uleb128 0
+ 1495 076d 300F0000 		.4byte	.LASF316
+ 1496 0771 05       		.byte	0x5
+ 1497 0772 00       		.uleb128 0
+ 1498 0773 D8130000 		.4byte	.LASF317
+ 1499 0777 05       		.byte	0x5
+ 1500 0778 00       		.uleb128 0
+ 1501 0779 EA100000 		.4byte	.LASF318
+ 1502 077d 05       		.byte	0x5
+ 1503 077e 00       		.uleb128 0
+ 1504 077f 13070000 		.4byte	.LASF319
+ 1505 0783 05       		.byte	0x5
+ 1506 0784 00       		.uleb128 0
+ 1507 0785 C3190000 		.4byte	.LASF320
+ 1508 0789 05       		.byte	0x5
+ 1509 078a 00       		.uleb128 0
+ 1510 078b C50A0000 		.4byte	.LASF321
+ 1511 078f 05       		.byte	0x5
+ 1512 0790 00       		.uleb128 0
+ 1513 0791 80080000 		.4byte	.LASF322
+ 1514 0795 05       		.byte	0x5
+ 1515 0796 00       		.uleb128 0
+ 1516 0797 0E0C0000 		.4byte	.LASF323
+ 1517 079b 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 28
+
+
+ 1518 079c 00       		.uleb128 0
+ 1519 079d E7020000 		.4byte	.LASF324
+ 1520 07a1 05       		.byte	0x5
+ 1521 07a2 00       		.uleb128 0
+ 1522 07a3 7C070000 		.4byte	.LASF325
+ 1523 07a7 06       		.byte	0x6
+ 1524 07a8 00       		.uleb128 0
+ 1525 07a9 A8010000 		.4byte	.LASF326
+ 1526 07ad 05       		.byte	0x5
+ 1527 07ae 00       		.uleb128 0
+ 1528 07af B60C0000 		.4byte	.LASF327
+ 1529 07b3 05       		.byte	0x5
+ 1530 07b4 00       		.uleb128 0
+ 1531 07b5 17030000 		.4byte	.LASF328
+ 1532 07b9 06       		.byte	0x6
+ 1533 07ba 00       		.uleb128 0
+ 1534 07bb 3C040000 		.4byte	.LASF329
+ 1535 07bf 05       		.byte	0x5
+ 1536 07c0 00       		.uleb128 0
+ 1537 07c1 AA1F0000 		.4byte	.LASF330
+ 1538 07c5 06       		.byte	0x6
+ 1539 07c6 00       		.uleb128 0
+ 1540 07c7 13230000 		.4byte	.LASF331
+ 1541 07cb 05       		.byte	0x5
+ 1542 07cc 00       		.uleb128 0
+ 1543 07cd 0F120000 		.4byte	.LASF332
+ 1544 07d1 05       		.byte	0x5
+ 1545 07d2 00       		.uleb128 0
+ 1546 07d3 2C0A0000 		.4byte	.LASF333
+ 1547 07d7 05       		.byte	0x5
+ 1548 07d8 00       		.uleb128 0
+ 1549 07d9 F3150000 		.4byte	.LASF334
+ 1550 07dd 06       		.byte	0x6
+ 1551 07de 00       		.uleb128 0
+ 1552 07df 52020000 		.4byte	.LASF335
+ 1553 07e3 05       		.byte	0x5
+ 1554 07e4 00       		.uleb128 0
+ 1555 07e5 3F000000 		.4byte	.LASF336
+ 1556 07e9 05       		.byte	0x5
+ 1557 07ea 00       		.uleb128 0
+ 1558 07eb D0230000 		.4byte	.LASF337
+ 1559 07ef 05       		.byte	0x5
+ 1560 07f0 00       		.uleb128 0
+ 1561 07f1 09210000 		.4byte	.LASF338
+ 1562 07f5 05       		.byte	0x5
+ 1563 07f6 00       		.uleb128 0
+ 1564 07f7 E6160000 		.4byte	.LASF339
+ 1565 07fb 05       		.byte	0x5
+ 1566 07fc 00       		.uleb128 0
+ 1567 07fd A0130000 		.4byte	.LASF340
+ 1568 0801 05       		.byte	0x5
+ 1569 0802 00       		.uleb128 0
+ 1570 0803 6B0F0000 		.4byte	.LASF341
+ 1571 0807 05       		.byte	0x5
+ 1572 0808 00       		.uleb128 0
+ 1573 0809 56050000 		.4byte	.LASF342
+ 1574 080d 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 29
+
+
+ 1575 080e 00       		.uleb128 0
+ 1576 080f 54180000 		.4byte	.LASF343
+ 1577 0813 05       		.byte	0x5
+ 1578 0814 00       		.uleb128 0
+ 1579 0815 AA230000 		.4byte	.LASF344
+ 1580 0819 05       		.byte	0x5
+ 1581 081a 00       		.uleb128 0
+ 1582 081b 58140000 		.4byte	.LASF345
+ 1583 081f 05       		.byte	0x5
+ 1584 0820 00       		.uleb128 0
+ 1585 0821 8A1B0000 		.4byte	.LASF346
+ 1586 0825 05       		.byte	0x5
+ 1587 0826 00       		.uleb128 0
+ 1588 0827 95030000 		.4byte	.LASF347
+ 1589 082b 05       		.byte	0x5
+ 1590 082c 00       		.uleb128 0
+ 1591 082d DA020000 		.4byte	.LASF348
+ 1592 0831 06       		.byte	0x6
+ 1593 0832 00       		.uleb128 0
+ 1594 0833 37070000 		.4byte	.LASF349
+ 1595 0837 06       		.byte	0x6
+ 1596 0838 00       		.uleb128 0
+ 1597 0839 D11C0000 		.4byte	.LASF350
+ 1598 083d 06       		.byte	0x6
+ 1599 083e 00       		.uleb128 0
+ 1600 083f CD0D0000 		.4byte	.LASF351
+ 1601 0843 06       		.byte	0x6
+ 1602 0844 00       		.uleb128 0
+ 1603 0845 BF210000 		.4byte	.LASF352
+ 1604 0849 06       		.byte	0x6
+ 1605 084a 00       		.uleb128 0
+ 1606 084b 921E0000 		.4byte	.LASF353
+ 1607 084f 05       		.byte	0x5
+ 1608 0850 00       		.uleb128 0
+ 1609 0851 A6110000 		.4byte	.LASF354
+ 1610 0855 05       		.byte	0x5
+ 1611 0856 00       		.uleb128 0
+ 1612 0857 520E0000 		.4byte	.LASF355
+ 1613 085b 05       		.byte	0x5
+ 1614 085c 00       		.uleb128 0
+ 1615 085d A1020000 		.4byte	.LASF356
+ 1616 0861 05       		.byte	0x5
+ 1617 0862 00       		.uleb128 0
+ 1618 0863 DA060000 		.4byte	.LASF357
+ 1619 0867 05       		.byte	0x5
+ 1620 0868 00       		.uleb128 0
+ 1621 0869 2B030000 		.4byte	.LASF358
+ 1622 086d 05       		.byte	0x5
+ 1623 086e 00       		.uleb128 0
+ 1624 086f 22180000 		.4byte	.LASF359
+ 1625 0873 05       		.byte	0x5
+ 1626 0874 00       		.uleb128 0
+ 1627 0875 37180000 		.4byte	.LASF360
+ 1628 0879 05       		.byte	0x5
+ 1629 087a 00       		.uleb128 0
+ 1630 087b 990D0000 		.4byte	.LASF361
+ 1631 087f 05       		.byte	0x5
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 30
+
+
+ 1632 0880 00       		.uleb128 0
+ 1633 0881 730A0000 		.4byte	.LASF362
+ 1634 0885 05       		.byte	0x5
+ 1635 0886 00       		.uleb128 0
+ 1636 0887 300B0000 		.4byte	.LASF363
+ 1637 088b 00       		.byte	0
+ 1638              		.section	.debug_line,"",%progbits
+ 1639              	.Ldebug_line0:
+ 1640 0000 40000000 		.section	.debug_str,"MS",%progbits,1
+ 1640      02002600 
+ 1640      00000201 
+ 1640      FB0E0D00 
+ 1640      01010101 
+ 1641              	.LASF112:
+ 1642 0000 5F5F5549 		.ascii	"__UINT_FAST8_MAX__ 0xffffffffU\000"
+ 1642      4E545F46 
+ 1642      41535438 
+ 1642      5F4D4158 
+ 1642      5F5F2030 
+ 1643              	.LASF268:
+ 1644 001f 5F5F4851 		.ascii	"__HQ_FBIT__ 15\000"
+ 1644      5F464249 
+ 1644      545F5F20 
+ 1644      313500
+ 1645              	.LASF284:
+ 1646 002e 5F5F5554 		.ascii	"__UTQ_FBIT__ 128\000"
+ 1646      515F4642 
+ 1646      49545F5F 
+ 1646      20313238 
+ 1646      00
+ 1647              	.LASF336:
+ 1648 003f 5F5F4152 		.ascii	"__ARM_SIZEOF_MINIMAL_ENUM 1\000"
+ 1648      4D5F5349 
+ 1648      5A454F46 
+ 1648      5F4D494E 
+ 1648      494D414C 
+ 1649              	.LASF300:
+ 1650 005b 5F5F5554 		.ascii	"__UTA_FBIT__ 64\000"
+ 1650      415F4642 
+ 1650      49545F5F 
+ 1650      20363400 
+ 1651              	.LASF279:
+ 1652 006b 5F5F5548 		.ascii	"__UHQ_IBIT__ 0\000"
+ 1652      515F4942 
+ 1652      49545F5F 
+ 1652      203000
+ 1653              	.LASF295:
+ 1654 007a 5F5F5548 		.ascii	"__UHA_IBIT__ 8\000"
+ 1654      415F4942 
+ 1654      49545F5F 
+ 1654      203800
+ 1655              	.LASF20:
+ 1656 0089 5F5F5349 		.ascii	"__SIZEOF_SIZE_T__ 4\000"
+ 1656      5A454F46 
+ 1656      5F53495A 
+ 1656      455F545F 
+ 1656      5F203400 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 31
+
+
+ 1657              	.LASF41:
+ 1658 009d 5F5F494E 		.ascii	"__INT64_TYPE__ long long int\000"
+ 1658      5436345F 
+ 1658      54595045 
+ 1658      5F5F206C 
+ 1658      6F6E6720 
+ 1659              	.LASF255:
+ 1660 00ba 5F5F554C 		.ascii	"__ULACCUM_EPSILON__ 0x1P-32ULK\000"
+ 1660      41434355 
+ 1660      4D5F4550 
+ 1660      53494C4F 
+ 1660      4E5F5F20 
+ 1661              	.LASF261:
+ 1662 00d9 5F5F554C 		.ascii	"__ULLACCUM_FBIT__ 32\000"
+ 1662      4C414343 
+ 1662      554D5F46 
+ 1662      4249545F 
+ 1662      5F203332 
+ 1663              	.LASF99:
+ 1664 00ee 5F5F494E 		.ascii	"__INT64_C(c) c ## LL\000"
+ 1664      5436345F 
+ 1664      43286329 
+ 1664      20632023 
+ 1664      23204C4C 
+ 1665              	.LASF366:
+ 1666 0103 5F5F6D61 		.ascii	"__main_stack_end\000"
+ 1666      696E5F73 
+ 1666      7461636B 
+ 1666      5F656E64 
+ 1666      00
+ 1667              	.LASF52:
+ 1668 0114 5F5F5549 		.ascii	"__UINT_LEAST32_TYPE__ long unsigned int\000"
+ 1668      4E545F4C 
+ 1668      45415354 
+ 1668      33325F54 
+ 1668      5950455F 
+ 1669              	.LASF289:
+ 1670 013c 5F5F5341 		.ascii	"__SA_IBIT__ 16\000"
+ 1670      5F494249 
+ 1670      545F5F20 
+ 1670      313600
+ 1671              	.LASF195:
+ 1672 014b 5F5F5553 		.ascii	"__USFRACT_EPSILON__ 0x1P-8UHR\000"
+ 1672      46524143 
+ 1672      545F4550 
+ 1672      53494C4F 
+ 1672      4E5F5F20 
+ 1673              	.LASF278:
+ 1674 0169 5F5F5548 		.ascii	"__UHQ_FBIT__ 16\000"
+ 1674      515F4642 
+ 1674      49545F5F 
+ 1674      20313600 
+ 1675              	.LASF144:
+ 1676 0179 5F5F4442 		.ascii	"__DBL_MAX__ ((double)1.7976931348623157e+308L)\000"
+ 1676      4C5F4D41 
+ 1676      585F5F20 
+ 1676      2828646F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 32
+
+
+ 1676      75626C65 
+ 1677              	.LASF326:
+ 1678 01a8 5F5F4152 		.ascii	"__ARM_FEATURE_DSP\000"
+ 1678      4D5F4645 
+ 1678      41545552 
+ 1678      455F4453 
+ 1678      5000
+ 1679              	.LASF172:
+ 1680 01ba 5F5F4445 		.ascii	"__DEC64_MANT_DIG__ 16\000"
+ 1680      4336345F 
+ 1680      4D414E54 
+ 1680      5F444947 
+ 1680      5F5F2031 
+ 1681              	.LASF122:
+ 1682 01d0 5F5F464C 		.ascii	"__FLT_RADIX__ 2\000"
+ 1682      545F5241 
+ 1682      4449585F 
+ 1682      5F203200 
+ 1683              	.LASF81:
+ 1684 01e0 5F5F5549 		.ascii	"__UINTMAX_C(c) c ## ULL\000"
+ 1684      4E544D41 
+ 1684      585F4328 
+ 1684      63292063 
+ 1684      20232320 
+ 1685              	.LASF108:
+ 1686 01f8 5F5F494E 		.ascii	"__INT_FAST8_MAX__ 0x7fffffff\000"
+ 1686      545F4641 
+ 1686      5354385F 
+ 1686      4D41585F 
+ 1686      5F203078 
+ 1687              	.LASF168:
+ 1688 0215 5F5F4445 		.ascii	"__DEC32_MIN__ 1E-95DF\000"
+ 1688      4333325F 
+ 1688      4D494E5F 
+ 1688      5F203145 
+ 1688      2D393544 
+ 1689              	.LASF45:
+ 1690 022b 5F5F5549 		.ascii	"__UINT64_TYPE__ long long unsigned int\000"
+ 1690      4E543634 
+ 1690      5F545950 
+ 1690      455F5F20 
+ 1690      6C6F6E67 
+ 1691              	.LASF335:
+ 1692 0252 5F5F4152 		.ascii	"__ARM_FEATURE_SIMD32\000"
+ 1692      4D5F4645 
+ 1692      41545552 
+ 1692      455F5349 
+ 1692      4D443332 
+ 1693              	.LASF223:
+ 1694 0267 5F5F554C 		.ascii	"__ULLFRACT_MIN__ 0.0ULLR\000"
+ 1694      4C465241 
+ 1694      43545F4D 
+ 1694      494E5F5F 
+ 1694      20302E30 
+ 1695              	.LASF265:
+ 1696 0280 5F5F554C 		.ascii	"__ULLACCUM_EPSILON__ 0x1P-32ULLK\000"
+ 1696      4C414343 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 33
+
+
+ 1696      554D5F45 
+ 1696      5053494C 
+ 1696      4F4E5F5F 
+ 1697              	.LASF356:
+ 1698 02a1 5F5F4152 		.ascii	"__ARM_PCS 1\000"
+ 1698      4D5F5043 
+ 1698      53203100 
+ 1699              	.LASF7:
+ 1700 02ad 5F5F4154 		.ascii	"__ATOMIC_SEQ_CST 5\000"
+ 1700      4F4D4943 
+ 1700      5F534551 
+ 1700      5F435354 
+ 1700      203500
+ 1701              	.LASF72:
+ 1702 02c0 5F5F5743 		.ascii	"__WCHAR_MAX__ 0xffffffffU\000"
+ 1702      4841525F 
+ 1702      4D41585F 
+ 1702      5F203078 
+ 1702      66666666 
+ 1703              	.LASF348:
+ 1704 02da 5F5F5646 		.ascii	"__VFP_FP__ 1\000"
+ 1704      505F4650 
+ 1704      5F5F2031 
+ 1704      00
+ 1705              	.LASF324:
+ 1706 02e7 5F5F5349 		.ascii	"__SIZEOF_WINT_T__ 4\000"
+ 1706      5A454F46 
+ 1706      5F57494E 
+ 1706      545F545F 
+ 1706      5F203400 
+ 1707              	.LASF230:
+ 1708 02fb 5F5F5341 		.ascii	"__SACCUM_EPSILON__ 0x1P-7HK\000"
+ 1708      4343554D 
+ 1708      5F455053 
+ 1708      494C4F4E 
+ 1708      5F5F2030 
+ 1709              	.LASF328:
+ 1710 0317 5F5F4152 		.ascii	"__ARM_FEATURE_SAT 1\000"
+ 1710      4D5F4645 
+ 1710      41545552 
+ 1710      455F5341 
+ 1710      54203100 
+ 1711              	.LASF358:
+ 1712 032b 5F5F4152 		.ascii	"__ARM_ARCH_EXT_IDIV__ 1\000"
+ 1712      4D5F4152 
+ 1712      43485F45 
+ 1712      58545F49 
+ 1712      4449565F 
+ 1713              	.LASF190:
+ 1714 0343 5F5F5346 		.ascii	"__SFRACT_EPSILON__ 0x1P-7HR\000"
+ 1714      52414354 
+ 1714      5F455053 
+ 1714      494C4F4E 
+ 1714      5F5F2030 
+ 1715              	.LASF36:
+ 1716 035f 5F5F4348 		.ascii	"__CHAR32_TYPE__ long unsigned int\000"
+ 1716      41523332 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 34
+
+
+ 1716      5F545950 
+ 1716      455F5F20 
+ 1716      6C6F6E67 
+ 1717              	.LASF251:
+ 1718 0381 5F5F554C 		.ascii	"__ULACCUM_FBIT__ 32\000"
+ 1718      41434355 
+ 1718      4D5F4642 
+ 1718      49545F5F 
+ 1718      20333200 
+ 1719              	.LASF347:
+ 1720 0395 5F5F534F 		.ascii	"__SOFTFP__ 1\000"
+ 1720      46544650 
+ 1720      5F5F2031 
+ 1720      00
+ 1721              	.LASF21:
+ 1722 03a2 5F5F4348 		.ascii	"__CHAR_BIT__ 8\000"
+ 1722      41525F42 
+ 1722      49545F5F 
+ 1722      203800
+ 1723              	.LASF149:
+ 1724 03b1 5F5F4442 		.ascii	"__DBL_HAS_INFINITY__ 1\000"
+ 1724      4C5F4841 
+ 1724      535F494E 
+ 1724      46494E49 
+ 1724      54595F5F 
+ 1725              	.LASF153:
+ 1726 03c8 5F5F4C44 		.ascii	"__LDBL_MIN_EXP__ (-1021)\000"
+ 1726      424C5F4D 
+ 1726      494E5F45 
+ 1726      58505F5F 
+ 1726      20282D31 
+ 1727              	.LASF4:
+ 1728 03e1 5F5F474E 		.ascii	"__GNUC_PATCHLEVEL__ 0\000"
+ 1728      55435F50 
+ 1728      41544348 
+ 1728      4C455645 
+ 1728      4C5F5F20 
+ 1729              	.LASF299:
+ 1730 03f7 5F5F5544 		.ascii	"__UDA_IBIT__ 32\000"
+ 1730      415F4942 
+ 1730      49545F5F 
+ 1730      20333200 
+ 1731              	.LASF247:
+ 1732 0407 5F5F4C41 		.ascii	"__LACCUM_IBIT__ 32\000"
+ 1732      4343554D 
+ 1732      5F494249 
+ 1732      545F5F20 
+ 1732      333200
+ 1733              	.LASF298:
+ 1734 041a 5F5F5544 		.ascii	"__UDA_FBIT__ 32\000"
+ 1734      415F4642 
+ 1734      49545F5F 
+ 1734      20333200 
+ 1735              	.LASF1:
+ 1736 042a 5F5F5354 		.ascii	"__STDC_HOSTED__ 1\000"
+ 1736      44435F48 
+ 1736      4F535445 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 35
+
+
+ 1736      445F5F20 
+ 1736      3100
+ 1737              	.LASF329:
+ 1738 043c 5F5F4152 		.ascii	"__ARM_FEATURE_CRYPTO\000"
+ 1738      4D5F4645 
+ 1738      41545552 
+ 1738      455F4352 
+ 1738      5950544F 
+ 1739              	.LASF157:
+ 1740 0451 5F5F4445 		.ascii	"__DECIMAL_DIG__ 17\000"
+ 1740      43494D41 
+ 1740      4C5F4449 
+ 1740      475F5F20 
+ 1740      313700
+ 1741              	.LASF191:
+ 1742 0464 5F5F5553 		.ascii	"__USFRACT_FBIT__ 8\000"
+ 1742      46524143 
+ 1742      545F4642 
+ 1742      49545F5F 
+ 1742      203800
+ 1743              	.LASF235:
+ 1744 0477 5F5F5553 		.ascii	"__USACCUM_EPSILON__ 0x1P-8UHK\000"
+ 1744      41434355 
+ 1744      4D5F4550 
+ 1744      53494C4F 
+ 1744      4E5F5F20 
+ 1745              	.LASF158:
+ 1746 0495 5F5F4C44 		.ascii	"__LDBL_MAX__ 1.7976931348623157e+308L\000"
+ 1746      424C5F4D 
+ 1746      41585F5F 
+ 1746      20312E37 
+ 1746      39373639 
+ 1747              	.LASF74:
+ 1748 04bb 5F5F5749 		.ascii	"__WINT_MAX__ 0xffffffffU\000"
+ 1748      4E545F4D 
+ 1748      41585F5F 
+ 1748      20307866 
+ 1748      66666666 
+ 1749              	.LASF187:
+ 1750 04d4 5F5F5346 		.ascii	"__SFRACT_IBIT__ 0\000"
+ 1750      52414354 
+ 1750      5F494249 
+ 1750      545F5F20 
+ 1750      3000
+ 1751              	.LASF29:
+ 1752 04e6 5F5F5349 		.ascii	"__SIZE_TYPE__ unsigned int\000"
+ 1752      5A455F54 
+ 1752      5950455F 
+ 1752      5F20756E 
+ 1752      7369676E 
+ 1753              	.LASF178:
+ 1754 0501 5F5F4445 		.ascii	"__DEC64_SUBNORMAL_MIN__ 0.000000000000001E-383DD\000"
+ 1754      4336345F 
+ 1754      5355424E 
+ 1754      4F524D41 
+ 1754      4C5F4D49 
+ 1755              	.LASF131:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 36
+
+
+ 1756 0532 5F5F464C 		.ascii	"__FLT_MIN__ 1.1754943508222875e-38F\000"
+ 1756      545F4D49 
+ 1756      4E5F5F20 
+ 1756      312E3137 
+ 1756      35343934 
+ 1757              	.LASF342:
+ 1758 0556 5F5F7468 		.ascii	"__thumb__ 1\000"
+ 1758      756D625F 
+ 1758      5F203100 
+ 1759              	.LASF137:
+ 1760 0562 5F5F4442 		.ascii	"__DBL_MANT_DIG__ 53\000"
+ 1760      4C5F4D41 
+ 1760      4E545F44 
+ 1760      49475F5F 
+ 1760      20353300 
+ 1761              	.LASF207:
+ 1762 0576 5F5F4C46 		.ascii	"__LFRACT_IBIT__ 0\000"
+ 1762      52414354 
+ 1762      5F494249 
+ 1762      545F5F20 
+ 1762      3000
+ 1763              	.LASF53:
+ 1764 0588 5F5F5549 		.ascii	"__UINT_LEAST64_TYPE__ long long unsigned int\000"
+ 1764      4E545F4C 
+ 1764      45415354 
+ 1764      36345F54 
+ 1764      5950455F 
+ 1765              	.LASF213:
+ 1766 05b5 5F5F554C 		.ascii	"__ULFRACT_MIN__ 0.0ULR\000"
+ 1766      46524143 
+ 1766      545F4D49 
+ 1766      4E5F5F20 
+ 1766      302E3055 
+ 1767              	.LASF62:
+ 1768 05cc 5F5F494E 		.ascii	"__INTPTR_TYPE__ int\000"
+ 1768      54505452 
+ 1768      5F545950 
+ 1768      455F5F20 
+ 1768      696E7400 
+ 1769              	.LASF98:
+ 1770 05e0 5F5F494E 		.ascii	"__INT_LEAST64_MAX__ 0x7fffffffffffffffLL\000"
+ 1770      545F4C45 
+ 1770      41535436 
+ 1770      345F4D41 
+ 1770      585F5F20 
+ 1771              	.LASF367:
+ 1772 0609 76656374 		.ascii	"vectors\000"
+ 1772      6F727300 
+ 1773              	.LASF42:
+ 1774 0611 5F5F5549 		.ascii	"__UINT8_TYPE__ unsigned char\000"
+ 1774      4E54385F 
+ 1774      54595045 
+ 1774      5F5F2075 
+ 1774      6E736967 
+ 1775              	.LASF167:
+ 1776 062e 5F5F4445 		.ascii	"__DEC32_MAX_EXP__ 97\000"
+ 1776      4333325F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 37
+
+
+ 1776      4D41585F 
+ 1776      4558505F 
+ 1776      5F203937 
+ 1777              	.LASF155:
+ 1778 0643 5F5F4C44 		.ascii	"__LDBL_MAX_EXP__ 1024\000"
+ 1778      424C5F4D 
+ 1778      41585F45 
+ 1778      58505F5F 
+ 1778      20313032 
+ 1779              	.LASF37:
+ 1780 0659 5F5F5349 		.ascii	"__SIG_ATOMIC_TYPE__ int\000"
+ 1780      475F4154 
+ 1780      4F4D4943 
+ 1780      5F545950 
+ 1780      455F5F20 
+ 1781              	.LASF216:
+ 1782 0671 5F5F4C4C 		.ascii	"__LLFRACT_FBIT__ 63\000"
+ 1782      46524143 
+ 1782      545F4642 
+ 1782      49545F5F 
+ 1782      20363300 
+ 1783              	.LASF19:
+ 1784 0685 5F5F5349 		.ascii	"__SIZEOF_LONG_DOUBLE__ 8\000"
+ 1784      5A454F46 
+ 1784      5F4C4F4E 
+ 1784      475F444F 
+ 1784      55424C45 
+ 1785              	.LASF196:
+ 1786 069e 5F5F4652 		.ascii	"__FRACT_FBIT__ 15\000"
+ 1786      4143545F 
+ 1786      46424954 
+ 1786      5F5F2031 
+ 1786      3500
+ 1787              	.LASF219:
+ 1788 06b0 5F5F4C4C 		.ascii	"__LLFRACT_MAX__ 0X7FFFFFFFFFFFFFFFP-63LLR\000"
+ 1788      46524143 
+ 1788      545F4D41 
+ 1788      585F5F20 
+ 1788      30583746 
+ 1789              	.LASF357:
+ 1790 06da 5F5F4152 		.ascii	"__ARM_EABI__ 1\000"
+ 1790      4D5F4541 
+ 1790      42495F5F 
+ 1790      203100
+ 1791              	.LASF254:
+ 1792 06e9 5F5F554C 		.ascii	"__ULACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULK\000"
+ 1792      41434355 
+ 1792      4D5F4D41 
+ 1792      585F5F20 
+ 1792      30584646 
+ 1793              	.LASF319:
+ 1794 0713 5F5F4743 		.ascii	"__GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1\000"
+ 1794      435F4154 
+ 1794      4F4D4943 
+ 1794      5F544553 
+ 1794      545F414E 
+ 1795              	.LASF349:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 38
+
+
+ 1796 0737 5F5F4152 		.ascii	"__ARM_FP\000"
+ 1796      4D5F4650 
+ 1796      00
+ 1797              	.LASF293:
+ 1798 0740 5F5F5441 		.ascii	"__TA_IBIT__ 64\000"
+ 1798      5F494249 
+ 1798      545F5F20 
+ 1798      363400
+ 1799              	.LASF163:
+ 1800 074f 5F5F4C44 		.ascii	"__LDBL_HAS_INFINITY__ 1\000"
+ 1800      424C5F48 
+ 1800      41535F49 
+ 1800      4E46494E 
+ 1800      4954595F 
+ 1801              	.LASF134:
+ 1802 0767 5F5F464C 		.ascii	"__FLT_HAS_DENORM__ 1\000"
+ 1802      545F4841 
+ 1802      535F4445 
+ 1802      4E4F524D 
+ 1802      5F5F2031 
+ 1803              	.LASF325:
+ 1804 077c 5F5F5349 		.ascii	"__SIZEOF_PTRDIFF_T__ 4\000"
+ 1804      5A454F46 
+ 1804      5F505452 
+ 1804      44494646 
+ 1804      5F545F5F 
+ 1805              	.LASF113:
+ 1806 0793 5F5F5549 		.ascii	"__UINT_FAST16_MAX__ 0xffffffffU\000"
+ 1806      4E545F46 
+ 1806      41535431 
+ 1806      365F4D41 
+ 1806      585F5F20 
+ 1807              	.LASF116:
+ 1808 07b3 5F5F494E 		.ascii	"__INTPTR_MAX__ 0x7fffffff\000"
+ 1808      54505452 
+ 1808      5F4D4158 
+ 1808      5F5F2030 
+ 1808      78376666 
+ 1809              	.LASF89:
+ 1810 07cd 5F5F5549 		.ascii	"__UINT16_MAX__ 0xffff\000"
+ 1810      4E543136 
+ 1810      5F4D4158 
+ 1810      5F5F2030 
+ 1810      78666666 
+ 1811              	.LASF314:
+ 1812 07e3 5F5F4743 		.ascii	"__GCC_ATOMIC_WCHAR_T_LOCK_FREE 2\000"
+ 1812      435F4154 
+ 1812      4F4D4943 
+ 1812      5F574348 
+ 1812      41525F54 
+ 1813              	.LASF38:
+ 1814 0804 5F5F494E 		.ascii	"__INT8_TYPE__ signed char\000"
+ 1814      54385F54 
+ 1814      5950455F 
+ 1814      5F207369 
+ 1814      676E6564 
+ 1815              	.LASF26:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 39
+
+
+ 1816 081e 5F5F4259 		.ascii	"__BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__\000"
+ 1816      54455F4F 
+ 1816      52444552 
+ 1816      5F5F205F 
+ 1816      5F4F5244 
+ 1817              	.LASF209:
+ 1818 0845 5F5F4C46 		.ascii	"__LFRACT_MAX__ 0X7FFFFFFFP-31LR\000"
+ 1818      52414354 
+ 1818      5F4D4158 
+ 1818      5F5F2030 
+ 1818      58374646 
+ 1819              	.LASF200:
+ 1820 0865 5F5F4652 		.ascii	"__FRACT_EPSILON__ 0x1P-15R\000"
+ 1820      4143545F 
+ 1820      45505349 
+ 1820      4C4F4E5F 
+ 1820      5F203078 
+ 1821              	.LASF322:
+ 1822 0880 5F5F5052 		.ascii	"__PRAGMA_REDEFINE_EXTNAME 1\000"
+ 1822      41474D41 
+ 1822      5F524544 
+ 1822      4546494E 
+ 1822      455F4558 
+ 1823              	.LASF27:
+ 1824 089c 5F5F464C 		.ascii	"__FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__\000"
+ 1824      4F41545F 
+ 1824      574F5244 
+ 1824      5F4F5244 
+ 1824      45525F5F 
+ 1825              	.LASF102:
+ 1826 08c9 5F5F5549 		.ascii	"__UINT_LEAST16_MAX__ 0xffff\000"
+ 1826      4E545F4C 
+ 1826      45415354 
+ 1826      31365F4D 
+ 1826      41585F5F 
+ 1827              	.LASF40:
+ 1828 08e5 5F5F494E 		.ascii	"__INT32_TYPE__ long int\000"
+ 1828      5433325F 
+ 1828      54595045 
+ 1828      5F5F206C 
+ 1828      6F6E6720 
+ 1829              	.LASF47:
+ 1830 08fd 5F5F494E 		.ascii	"__INT_LEAST16_TYPE__ short int\000"
+ 1830      545F4C45 
+ 1830      41535431 
+ 1830      365F5459 
+ 1830      50455F5F 
+ 1831              	.LASF55:
+ 1832 091c 5F5F494E 		.ascii	"__INT_FAST16_TYPE__ int\000"
+ 1832      545F4641 
+ 1832      53543136 
+ 1832      5F545950 
+ 1832      455F5F20 
+ 1833              	.LASF5:
+ 1834 0934 5F5F5645 		.ascii	"__VERSION__ \"6.3.0\"\000"
+ 1834      5253494F 
+ 1834      4E5F5F20 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 40
+
+
+ 1834      22362E33 
+ 1834      2E302200 
+ 1835              	.LASF237:
+ 1836 0948 5F5F4143 		.ascii	"__ACCUM_IBIT__ 16\000"
+ 1836      43554D5F 
+ 1836      49424954 
+ 1836      5F5F2031 
+ 1836      3600
+ 1837              	.LASF65:
+ 1838 095a 5F5F6861 		.ascii	"__has_include_next(STR) __has_include_next__(STR)\000"
+ 1838      735F696E 
+ 1838      636C7564 
+ 1838      655F6E65 
+ 1838      78742853 
+ 1839              	.LASF78:
+ 1840 098c 5F5F494E 		.ascii	"__INTMAX_MAX__ 0x7fffffffffffffffLL\000"
+ 1840      544D4158 
+ 1840      5F4D4158 
+ 1840      5F5F2030 
+ 1840      78376666 
+ 1841              	.LASF370:
+ 1842 09b0 433A5C57 		.ascii	"C:\\WorkspaceSTM\\stm32F1\000"
+ 1842      6F726B73 
+ 1842      70616365 
+ 1842      53544D5C 
+ 1842      73746D33 
+ 1843              	.LASF244:
+ 1844 09c8 5F5F5541 		.ascii	"__UACCUM_MAX__ 0XFFFFFFFFP-16UK\000"
+ 1844      4343554D 
+ 1844      5F4D4158 
+ 1844      5F5F2030 
+ 1844      58464646 
+ 1845              	.LASF371:
+ 1846 09e8 5F5F4465 		.ascii	"__Default_Handler\000"
+ 1846      6661756C 
+ 1846      745F4861 
+ 1846      6E646C65 
+ 1846      7200
+ 1847              	.LASF39:
+ 1848 09fa 5F5F494E 		.ascii	"__INT16_TYPE__ short int\000"
+ 1848      5431365F 
+ 1848      54595045 
+ 1848      5F5F2073 
+ 1848      686F7274 
+ 1849              	.LASF164:
+ 1850 0a13 5F5F4C44 		.ascii	"__LDBL_HAS_QUIET_NAN__ 1\000"
+ 1850      424C5F48 
+ 1850      41535F51 
+ 1850      55494554 
+ 1850      5F4E414E 
+ 1851              	.LASF333:
+ 1852 0a2c 5F5F4152 		.ascii	"__ARM_FEATURE_LDREX 7\000"
+ 1852      4D5F4645 
+ 1852      41545552 
+ 1852      455F4C44 
+ 1852      52455820 
+ 1853              	.LASF18:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 41
+
+
+ 1854 0a42 5F5F5349 		.ascii	"__SIZEOF_DOUBLE__ 8\000"
+ 1854      5A454F46 
+ 1854      5F444F55 
+ 1854      424C455F 
+ 1854      5F203800 
+ 1855              	.LASF234:
+ 1856 0a56 5F5F5553 		.ascii	"__USACCUM_MAX__ 0XFFFFP-8UHK\000"
+ 1856      41434355 
+ 1856      4D5F4D41 
+ 1856      585F5F20 
+ 1856      30584646 
+ 1857              	.LASF362:
+ 1858 0a73 5F5F454C 		.ascii	"__ELF__ 1\000"
+ 1858      465F5F20 
+ 1858      3100
+ 1859              	.LASF88:
+ 1860 0a7d 5F5F5549 		.ascii	"__UINT8_MAX__ 0xff\000"
+ 1860      4E54385F 
+ 1860      4D41585F 
+ 1860      5F203078 
+ 1860      666600
+ 1861              	.LASF275:
+ 1862 0a90 5F5F5451 		.ascii	"__TQ_IBIT__ 0\000"
+ 1862      5F494249 
+ 1862      545F5F20 
+ 1862      3000
+ 1863              	.LASF77:
+ 1864 0a9e 5F5F5349 		.ascii	"__SIZE_MAX__ 0xffffffffU\000"
+ 1864      5A455F4D 
+ 1864      41585F5F 
+ 1864      20307866 
+ 1864      66666666 
+ 1865              	.LASF271:
+ 1866 0ab7 5F5F5351 		.ascii	"__SQ_IBIT__ 0\000"
+ 1866      5F494249 
+ 1866      545F5F20 
+ 1866      3000
+ 1867              	.LASF321:
+ 1868 0ac5 5F5F4743 		.ascii	"__GCC_HAVE_DWARF2_CFI_ASM 1\000"
+ 1868      435F4841 
+ 1868      56455F44 
+ 1868      57415246 
+ 1868      325F4346 
+ 1869              	.LASF189:
+ 1870 0ae1 5F5F5346 		.ascii	"__SFRACT_MAX__ 0X7FP-7HR\000"
+ 1870      52414354 
+ 1870      5F4D4158 
+ 1870      5F5F2030 
+ 1870      58374650 
+ 1871              	.LASF97:
+ 1872 0afa 5F5F494E 		.ascii	"__INT32_C(c) c ## L\000"
+ 1872      5433325F 
+ 1872      43286329 
+ 1872      20632023 
+ 1872      23204C00 
+ 1873              	.LASF313:
+ 1874 0b0e 5F5F4743 		.ascii	"__GCC_ATOMIC_CHAR32_T_LOCK_FREE 2\000"
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 42
+
+
+ 1874      435F4154 
+ 1874      4F4D4943 
+ 1874      5F434841 
+ 1874      5233325F 
+ 1875              	.LASF363:
+ 1876 0b30 5F5F5553 		.ascii	"__USES_INITFINI__ 1\000"
+ 1876      45535F49 
+ 1876      4E495446 
+ 1876      494E495F 
+ 1876      5F203100 
+ 1877              	.LASF34:
+ 1878 0b44 5F5F5549 		.ascii	"__UINTMAX_TYPE__ long long unsigned int\000"
+ 1878      4E544D41 
+ 1878      585F5459 
+ 1878      50455F5F 
+ 1878      206C6F6E 
+ 1879              	.LASF302:
+ 1880 0b6c 5F5F5245 		.ascii	"__REGISTER_PREFIX__ \000"
+ 1880      47495354 
+ 1880      45525F50 
+ 1880      52454649 
+ 1880      585F5F20 
+ 1881              	.LASF115:
+ 1882 0b81 5F5F5549 		.ascii	"__UINT_FAST64_MAX__ 0xffffffffffffffffULL\000"
+ 1882      4E545F46 
+ 1882      41535436 
+ 1882      345F4D41 
+ 1882      585F5F20 
+ 1883              	.LASF220:
+ 1884 0bab 5F5F4C4C 		.ascii	"__LLFRACT_EPSILON__ 0x1P-63LLR\000"
+ 1884      46524143 
+ 1884      545F4550 
+ 1884      53494C4F 
+ 1884      4E5F5F20 
+ 1885              	.LASF15:
+ 1886 0bca 5F5F5349 		.ascii	"__SIZEOF_LONG_LONG__ 8\000"
+ 1886      5A454F46 
+ 1886      5F4C4F4E 
+ 1886      475F4C4F 
+ 1886      4E475F5F 
+ 1887              	.LASF124:
+ 1888 0be1 5F5F464C 		.ascii	"__FLT_DIG__ 6\000"
+ 1888      545F4449 
+ 1888      475F5F20 
+ 1888      3600
+ 1889              	.LASF215:
+ 1890 0bef 5F5F554C 		.ascii	"__ULFRACT_EPSILON__ 0x1P-32ULR\000"
+ 1890      46524143 
+ 1890      545F4550 
+ 1890      53494C4F 
+ 1890      4E5F5F20 
+ 1891              	.LASF323:
+ 1892 0c0e 5F5F5349 		.ascii	"__SIZEOF_WCHAR_T__ 4\000"
+ 1892      5A454F46 
+ 1892      5F574348 
+ 1892      41525F54 
+ 1892      5F5F2034 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 43
+
+
+ 1893              	.LASF9:
+ 1894 0c23 5F5F4154 		.ascii	"__ATOMIC_RELEASE 3\000"
+ 1894      4F4D4943 
+ 1894      5F52454C 
+ 1894      45415345 
+ 1894      203300
+ 1895              	.LASF128:
+ 1896 0c36 5F5F464C 		.ascii	"__FLT_MAX_10_EXP__ 38\000"
+ 1896      545F4D41 
+ 1896      585F3130 
+ 1896      5F455850 
+ 1896      5F5F2033 
+ 1897              	.LASF110:
+ 1898 0c4c 5F5F494E 		.ascii	"__INT_FAST32_MAX__ 0x7fffffff\000"
+ 1898      545F4641 
+ 1898      53543332 
+ 1898      5F4D4158 
+ 1898      5F5F2030 
+ 1899              	.LASF75:
+ 1900 0c6a 5F5F5749 		.ascii	"__WINT_MIN__ 0U\000"
+ 1900      4E545F4D 
+ 1900      494E5F5F 
+ 1900      20305500 
+ 1901              	.LASF28:
+ 1902 0c7a 5F5F5349 		.ascii	"__SIZEOF_POINTER__ 4\000"
+ 1902      5A454F46 
+ 1902      5F504F49 
+ 1902      4E544552 
+ 1902      5F5F2034 
+ 1903              	.LASF258:
+ 1904 0c8f 5F5F4C4C 		.ascii	"__LLACCUM_MIN__ (-0X1P31LLK-0X1P31LLK)\000"
+ 1904      41434355 
+ 1904      4D5F4D49 
+ 1904      4E5F5F20 
+ 1904      282D3058 
+ 1905              	.LASF327:
+ 1906 0cb6 5F5F4152 		.ascii	"__ARM_FEATURE_QBIT 1\000"
+ 1906      4D5F4645 
+ 1906      41545552 
+ 1906      455F5142 
+ 1906      49542031 
+ 1907              	.LASF93:
+ 1908 0ccb 5F5F494E 		.ascii	"__INT8_C(c) c\000"
+ 1908      54385F43 
+ 1908      28632920 
+ 1908      6300
+ 1909              	.LASF91:
+ 1910 0cd9 5F5F5549 		.ascii	"__UINT64_MAX__ 0xffffffffffffffffULL\000"
+ 1910      4E543634 
+ 1910      5F4D4158 
+ 1910      5F5F2030 
+ 1910      78666666 
+ 1911              	.LASF3:
+ 1912 0cfe 5F5F474E 		.ascii	"__GNUC_MINOR__ 3\000"
+ 1912      55435F4D 
+ 1912      494E4F52 
+ 1912      5F5F2033 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 44
+
+
+ 1912      00
+ 1913              	.LASF212:
+ 1914 0d0f 5F5F554C 		.ascii	"__ULFRACT_IBIT__ 0\000"
+ 1914      46524143 
+ 1914      545F4942 
+ 1914      49545F5F 
+ 1914      203000
+ 1915              	.LASF121:
+ 1916 0d22 5F5F4445 		.ascii	"__DEC_EVAL_METHOD__ 2\000"
+ 1916      435F4556 
+ 1916      414C5F4D 
+ 1916      4554484F 
+ 1916      445F5F20 
+ 1917              	.LASF169:
+ 1918 0d38 5F5F4445 		.ascii	"__DEC32_MAX__ 9.999999E96DF\000"
+ 1918      4333325F 
+ 1918      4D41585F 
+ 1918      5F20392E 
+ 1918      39393939 
+ 1919              	.LASF71:
+ 1920 0d54 5F5F4C4F 		.ascii	"__LONG_LONG_MAX__ 0x7fffffffffffffffLL\000"
+ 1920      4E475F4C 
+ 1920      4F4E475F 
+ 1920      4D41585F 
+ 1920      5F203078 
+ 1921              	.LASF310:
+ 1922 0d7b 5F5F4743 		.ascii	"__GCC_ATOMIC_BOOL_LOCK_FREE 2\000"
+ 1922      435F4154 
+ 1922      4F4D4943 
+ 1922      5F424F4F 
+ 1922      4C5F4C4F 
+ 1923              	.LASF361:
+ 1924 0d99 5F5F4758 		.ascii	"__GXX_TYPEINFO_EQUALITY_INLINE 0\000"
+ 1924      585F5459 
+ 1924      5045494E 
+ 1924      464F5F45 
+ 1924      5155414C 
+ 1925              	.LASF242:
+ 1926 0dba 5F5F5541 		.ascii	"__UACCUM_IBIT__ 16\000"
+ 1926      4343554D 
+ 1926      5F494249 
+ 1926      545F5F20 
+ 1926      313600
+ 1927              	.LASF351:
+ 1928 0dcd 5F5F4152 		.ascii	"__ARM_NEON__\000"
+ 1928      4D5F4E45 
+ 1928      4F4E5F5F 
+ 1928      00
+ 1929              	.LASF136:
+ 1930 0dda 5F5F464C 		.ascii	"__FLT_HAS_QUIET_NAN__ 1\000"
+ 1930      545F4841 
+ 1930      535F5155 
+ 1930      4945545F 
+ 1930      4E414E5F 
+ 1931              	.LASF159:
+ 1932 0df2 5F5F4C44 		.ascii	"__LDBL_MIN__ 2.2250738585072014e-308L\000"
+ 1932      424C5F4D 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 45
+
+
+ 1932      494E5F5F 
+ 1932      20322E32 
+ 1932      32353037 
+ 1933              	.LASF87:
+ 1934 0e18 5F5F494E 		.ascii	"__INT64_MAX__ 0x7fffffffffffffffLL\000"
+ 1934      5436345F 
+ 1934      4D41585F 
+ 1934      5F203078 
+ 1934      37666666 
+ 1935              	.LASF125:
+ 1936 0e3b 5F5F464C 		.ascii	"__FLT_MIN_EXP__ (-125)\000"
+ 1936      545F4D49 
+ 1936      4E5F4558 
+ 1936      505F5F20 
+ 1936      282D3132 
+ 1937              	.LASF355:
+ 1938 0e52 5F5F4152 		.ascii	"__ARM_ARCH_7M__ 1\000"
+ 1938      4D5F4152 
+ 1938      43485F37 
+ 1938      4D5F5F20 
+ 1938      3100
+ 1939              	.LASF204:
+ 1940 0e64 5F5F5546 		.ascii	"__UFRACT_MAX__ 0XFFFFP-16UR\000"
+ 1940      52414354 
+ 1940      5F4D4158 
+ 1940      5F5F2030 
+ 1940      58464646 
+ 1941              	.LASF194:
+ 1942 0e80 5F5F5553 		.ascii	"__USFRACT_MAX__ 0XFFP-8UHR\000"
+ 1942      46524143 
+ 1942      545F4D41 
+ 1942      585F5F20 
+ 1942      30584646 
+ 1943              	.LASF24:
+ 1944 0e9b 5F5F4F52 		.ascii	"__ORDER_BIG_ENDIAN__ 4321\000"
+ 1944      4445525F 
+ 1944      4249475F 
+ 1944      454E4449 
+ 1944      414E5F5F 
+ 1945              	.LASF35:
+ 1946 0eb5 5F5F4348 		.ascii	"__CHAR16_TYPE__ short unsigned int\000"
+ 1946      41523136 
+ 1946      5F545950 
+ 1946      455F5F20 
+ 1946      73686F72 
+ 1947              	.LASF193:
+ 1948 0ed8 5F5F5553 		.ascii	"__USFRACT_MIN__ 0.0UHR\000"
+ 1948      46524143 
+ 1948      545F4D49 
+ 1948      4E5F5F20 
+ 1948      302E3055 
+ 1949              	.LASF280:
+ 1950 0eef 5F5F5553 		.ascii	"__USQ_FBIT__ 32\000"
+ 1950      515F4642 
+ 1950      49545F5F 
+ 1950      20333200 
+ 1951              	.LASF33:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 46
+
+
+ 1952 0eff 5F5F494E 		.ascii	"__INTMAX_TYPE__ long long int\000"
+ 1952      544D4158 
+ 1952      5F545950 
+ 1952      455F5F20 
+ 1952      6C6F6E67 
+ 1953              	.LASF16:
+ 1954 0f1d 5F5F5349 		.ascii	"__SIZEOF_SHORT__ 2\000"
+ 1954      5A454F46 
+ 1954      5F53484F 
+ 1954      52545F5F 
+ 1954      203200
+ 1955              	.LASF316:
+ 1956 0f30 5F5F4743 		.ascii	"__GCC_ATOMIC_INT_LOCK_FREE 2\000"
+ 1956      435F4154 
+ 1956      4F4D4943 
+ 1956      5F494E54 
+ 1956      5F4C4F43 
+ 1957              	.LASF270:
+ 1958 0f4d 5F5F5351 		.ascii	"__SQ_FBIT__ 31\000"
+ 1958      5F464249 
+ 1958      545F5F20 
+ 1958      333100
+ 1959              	.LASF290:
+ 1960 0f5c 5F5F4441 		.ascii	"__DA_FBIT__ 31\000"
+ 1960      5F464249 
+ 1960      545F5F20 
+ 1960      333100
+ 1961              	.LASF341:
+ 1962 0f6b 5F5F4150 		.ascii	"__APCS_32__ 1\000"
+ 1962      43535F33 
+ 1962      325F5F20 
+ 1962      3100
+ 1963              	.LASF95:
+ 1964 0f79 5F5F494E 		.ascii	"__INT16_C(c) c\000"
+ 1964      5431365F 
+ 1964      43286329 
+ 1964      206300
+ 1965              	.LASF368:
+ 1966 0f88 474E5520 		.ascii	"GNU C89 6.3.0 -mcpu=cortex-m3 -mthumb -g -ggdb3 -O0"
+ 1966      43383920 
+ 1966      362E332E 
+ 1966      30202D6D 
+ 1966      6370753D 
+ 1967 0fbb 202D7374 		.ascii	" -std=gnu90 -ffunction-sections -fdata-sections\000"
+ 1967      643D676E 
+ 1967      75393020 
+ 1967      2D666675 
+ 1967      6E637469 
+ 1968              	.LASF248:
+ 1969 0feb 5F5F4C41 		.ascii	"__LACCUM_MIN__ (-0X1P31LK-0X1P31LK)\000"
+ 1969      4343554D 
+ 1969      5F4D494E 
+ 1969      5F5F2028 
+ 1969      2D305831 
+ 1970              	.LASF240:
+ 1971 100f 5F5F4143 		.ascii	"__ACCUM_EPSILON__ 0x1P-15K\000"
+ 1971      43554D5F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 47
+
+
+ 1971      45505349 
+ 1971      4C4F4E5F 
+ 1971      5F203078 
+ 1972              	.LASF127:
+ 1973 102a 5F5F464C 		.ascii	"__FLT_MAX_EXP__ 128\000"
+ 1973      545F4D41 
+ 1973      585F4558 
+ 1973      505F5F20 
+ 1973      31323800 
+ 1974              	.LASF259:
+ 1975 103e 5F5F4C4C 		.ascii	"__LLACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LLK\000"
+ 1975      41434355 
+ 1975      4D5F4D41 
+ 1975      585F5F20 
+ 1975      30583746 
+ 1976              	.LASF297:
+ 1977 1068 5F5F5553 		.ascii	"__USA_IBIT__ 16\000"
+ 1977      415F4942 
+ 1977      49545F5F 
+ 1977      20313600 
+ 1978              	.LASF176:
+ 1979 1078 5F5F4445 		.ascii	"__DEC64_MAX__ 9.999999999999999E384DD\000"
+ 1979      4336345F 
+ 1979      4D41585F 
+ 1979      5F20392E 
+ 1979      39393939 
+ 1980              	.LASF201:
+ 1981 109e 5F5F5546 		.ascii	"__UFRACT_FBIT__ 16\000"
+ 1981      52414354 
+ 1981      5F464249 
+ 1981      545F5F20 
+ 1981      313600
+ 1982              	.LASF285:
+ 1983 10b1 5F5F5554 		.ascii	"__UTQ_IBIT__ 0\000"
+ 1983      515F4942 
+ 1983      49545F5F 
+ 1983      203000
+ 1984              	.LASF206:
+ 1985 10c0 5F5F4C46 		.ascii	"__LFRACT_FBIT__ 31\000"
+ 1985      52414354 
+ 1985      5F464249 
+ 1985      545F5F20 
+ 1985      333100
+ 1986              	.LASF69:
+ 1987 10d3 5F5F494E 		.ascii	"__INT_MAX__ 0x7fffffff\000"
+ 1987      545F4D41 
+ 1987      585F5F20 
+ 1987      30783766 
+ 1987      66666666 
+ 1988              	.LASF318:
+ 1989 10ea 5F5F4743 		.ascii	"__GCC_ATOMIC_LLONG_LOCK_FREE 1\000"
+ 1989      435F4154 
+ 1989      4F4D4943 
+ 1989      5F4C4C4F 
+ 1989      4E475F4C 
+ 1990              	.LASF267:
+ 1991 1109 5F5F5151 		.ascii	"__QQ_IBIT__ 0\000"
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 48
+
+
+ 1991      5F494249 
+ 1991      545F5F20 
+ 1991      3000
+ 1992              	.LASF67:
+ 1993 1117 5F5F5343 		.ascii	"__SCHAR_MAX__ 0x7f\000"
+ 1993      4841525F 
+ 1993      4D41585F 
+ 1993      5F203078 
+ 1993      376600
+ 1994              	.LASF211:
+ 1995 112a 5F5F554C 		.ascii	"__ULFRACT_FBIT__ 32\000"
+ 1995      46524143 
+ 1995      545F4642 
+ 1995      49545F5F 
+ 1995      20333200 
+ 1996              	.LASF180:
+ 1997 113e 5F5F4445 		.ascii	"__DEC128_MIN_EXP__ (-6142)\000"
+ 1997      43313238 
+ 1997      5F4D494E 
+ 1997      5F455850 
+ 1997      5F5F2028 
+ 1998              	.LASF262:
+ 1999 1159 5F5F554C 		.ascii	"__ULLACCUM_IBIT__ 32\000"
+ 1999      4C414343 
+ 1999      554D5F49 
+ 1999      4249545F 
+ 1999      5F203332 
+ 2000              	.LASF186:
+ 2001 116e 5F5F5346 		.ascii	"__SFRACT_FBIT__ 7\000"
+ 2001      52414354 
+ 2001      5F464249 
+ 2001      545F5F20 
+ 2001      3700
+ 2002              	.LASF143:
+ 2003 1180 5F5F4442 		.ascii	"__DBL_DECIMAL_DIG__ 17\000"
+ 2003      4C5F4445 
+ 2003      43494D41 
+ 2003      4C5F4449 
+ 2003      475F5F20 
+ 2004              	.LASF138:
+ 2005 1197 5F5F4442 		.ascii	"__DBL_DIG__ 15\000"
+ 2005      4C5F4449 
+ 2005      475F5F20 
+ 2005      313500
+ 2006              	.LASF354:
+ 2007 11a6 5F5F5448 		.ascii	"__THUMB_INTERWORK__ 1\000"
+ 2007      554D425F 
+ 2007      494E5445 
+ 2007      52574F52 
+ 2007      4B5F5F20 
+ 2008              	.LASF129:
+ 2009 11bc 5F5F464C 		.ascii	"__FLT_DECIMAL_DIG__ 9\000"
+ 2009      545F4445 
+ 2009      43494D41 
+ 2009      4C5F4449 
+ 2009      475F5F20 
+ 2010              	.LASF57:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 49
+
+
+ 2011 11d2 5F5F494E 		.ascii	"__INT_FAST64_TYPE__ long long int\000"
+ 2011      545F4641 
+ 2011      53543634 
+ 2011      5F545950 
+ 2011      455F5F20 
+ 2012              	.LASF154:
+ 2013 11f4 5F5F4C44 		.ascii	"__LDBL_MIN_10_EXP__ (-307)\000"
+ 2013      424C5F4D 
+ 2013      494E5F31 
+ 2013      305F4558 
+ 2013      505F5F20 
+ 2014              	.LASF332:
+ 2015 120f 5F5F4152 		.ascii	"__ARM_32BIT_STATE 1\000"
+ 2015      4D5F3332 
+ 2015      4249545F 
+ 2015      53544154 
+ 2015      45203100 
+ 2016              	.LASF13:
+ 2017 1223 5F5F5349 		.ascii	"__SIZEOF_INT__ 4\000"
+ 2017      5A454F46 
+ 2017      5F494E54 
+ 2017      5F5F2034 
+ 2017      00
+ 2018              	.LASF100:
+ 2019 1234 5F5F5549 		.ascii	"__UINT_LEAST8_MAX__ 0xff\000"
+ 2019      4E545F4C 
+ 2019      45415354 
+ 2019      385F4D41 
+ 2019      585F5F20 
+ 2020              	.LASF306:
+ 2021 124d 5F5F4348 		.ascii	"__CHAR_UNSIGNED__ 1\000"
+ 2021      41525F55 
+ 2021      4E534947 
+ 2021      4E45445F 
+ 2021      5F203100 
+ 2022              	.LASF181:
+ 2023 1261 5F5F4445 		.ascii	"__DEC128_MAX_EXP__ 6145\000"
+ 2023      43313238 
+ 2023      5F4D4158 
+ 2023      5F455850 
+ 2023      5F5F2036 
+ 2024              	.LASF85:
+ 2025 1279 5F5F494E 		.ascii	"__INT16_MAX__ 0x7fff\000"
+ 2025      5431365F 
+ 2025      4D41585F 
+ 2025      5F203078 
+ 2025      37666666 
+ 2026              	.LASF309:
+ 2027 128e 5F5F4743 		.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1\000"
+ 2027      435F4841 
+ 2027      56455F53 
+ 2027      594E435F 
+ 2027      434F4D50 
+ 2028              	.LASF365:
+ 2029 12b3 73697A65 		.ascii	"sizetype\000"
+ 2029      74797065 
+ 2029      00
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 50
+
+
+ 2030              	.LASF210:
+ 2031 12bc 5F5F4C46 		.ascii	"__LFRACT_EPSILON__ 0x1P-31LR\000"
+ 2031      52414354 
+ 2031      5F455053 
+ 2031      494C4F4E 
+ 2031      5F5F2030 
+ 2032              	.LASF161:
+ 2033 12d9 5F5F4C44 		.ascii	"__LDBL_DENORM_MIN__ 4.9406564584124654e-324L\000"
+ 2033      424C5F44 
+ 2033      454E4F52 
+ 2033      4D5F4D49 
+ 2033      4E5F5F20 
+ 2034              	.LASF174:
+ 2035 1306 5F5F4445 		.ascii	"__DEC64_MAX_EXP__ 385\000"
+ 2035      4336345F 
+ 2035      4D41585F 
+ 2035      4558505F 
+ 2035      5F203338 
+ 2036              	.LASF147:
+ 2037 131c 5F5F4442 		.ascii	"__DBL_DENORM_MIN__ ((double)4.9406564584124654e-324"
+ 2037      4C5F4445 
+ 2037      4E4F524D 
+ 2037      5F4D494E 
+ 2037      5F5F2028 
+ 2038 134f 4C2900   		.ascii	"L)\000"
+ 2039              	.LASF123:
+ 2040 1352 5F5F464C 		.ascii	"__FLT_MANT_DIG__ 24\000"
+ 2040      545F4D41 
+ 2040      4E545F44 
+ 2040      49475F5F 
+ 2040      20323400 
+ 2041              	.LASF22:
+ 2042 1366 5F5F4249 		.ascii	"__BIGGEST_ALIGNMENT__ 8\000"
+ 2042      47474553 
+ 2042      545F414C 
+ 2042      49474E4D 
+ 2042      454E545F 
+ 2043              	.LASF2:
+ 2044 137e 5F5F474E 		.ascii	"__GNUC__ 6\000"
+ 2044      55435F5F 
+ 2044      203600
+ 2045              	.LASF54:
+ 2046 1389 5F5F494E 		.ascii	"__INT_FAST8_TYPE__ int\000"
+ 2046      545F4641 
+ 2046      5354385F 
+ 2046      54595045 
+ 2046      5F5F2069 
+ 2047              	.LASF340:
+ 2048 13a0 5F5F4152 		.ascii	"__ARM_ARCH 7\000"
+ 2048      4D5F4152 
+ 2048      43482037 
+ 2048      00
+ 2049              	.LASF90:
+ 2050 13ad 5F5F5549 		.ascii	"__UINT32_MAX__ 0xffffffffUL\000"
+ 2050      4E543332 
+ 2050      5F4D4158 
+ 2050      5F5F2030 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 51
+
+
+ 2050      78666666 
+ 2051              	.LASF276:
+ 2052 13c9 5F5F5551 		.ascii	"__UQQ_FBIT__ 8\000"
+ 2052      515F4642 
+ 2052      49545F5F 
+ 2052      203800
+ 2053              	.LASF317:
+ 2054 13d8 5F5F4743 		.ascii	"__GCC_ATOMIC_LONG_LOCK_FREE 2\000"
+ 2054      435F4154 
+ 2054      4F4D4943 
+ 2054      5F4C4F4E 
+ 2054      475F4C4F 
+ 2055              	.LASF111:
+ 2056 13f6 5F5F494E 		.ascii	"__INT_FAST64_MAX__ 0x7fffffffffffffffLL\000"
+ 2056      545F4641 
+ 2056      53543634 
+ 2056      5F4D4158 
+ 2056      5F5F2030 
+ 2057              	.LASF183:
+ 2058 141e 5F5F4445 		.ascii	"__DEC128_MAX__ 9.999999999999999999999999999999999E"
+ 2058      43313238 
+ 2058      5F4D4158 
+ 2058      5F5F2039 
+ 2058      2E393939 
+ 2059 1451 36313434 		.ascii	"6144DL\000"
+ 2059      444C00
+ 2060              	.LASF345:
+ 2061 1458 5F5F4152 		.ascii	"__ARM_ARCH_ISA_THUMB 2\000"
+ 2061      4D5F4152 
+ 2061      43485F49 
+ 2061      53415F54 
+ 2061      48554D42 
+ 2062              	.LASF51:
+ 2063 146f 5F5F5549 		.ascii	"__UINT_LEAST16_TYPE__ short unsigned int\000"
+ 2063      4E545F4C 
+ 2063      45415354 
+ 2063      31365F54 
+ 2063      5950455F 
+ 2064              	.LASF141:
+ 2065 1498 5F5F4442 		.ascii	"__DBL_MAX_EXP__ 1024\000"
+ 2065      4C5F4D41 
+ 2065      585F4558 
+ 2065      505F5F20 
+ 2065      31303234 
+ 2066              	.LASF0:
+ 2067 14ad 5F5F5354 		.ascii	"__STDC__ 1\000"
+ 2067      44435F5F 
+ 2067      203100
+ 2068              	.LASF117:
+ 2069 14b8 5F5F5549 		.ascii	"__UINTPTR_MAX__ 0xffffffffU\000"
+ 2069      4E545054 
+ 2069      525F4D41 
+ 2069      585F5F20 
+ 2069      30786666 
+ 2070              	.LASF119:
+ 2071 14d4 5F5F4743 		.ascii	"__GCC_IEC_559_COMPLEX 0\000"
+ 2071      435F4945 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 52
+
+
+ 2071      435F3535 
+ 2071      395F434F 
+ 2071      4D504C45 
+ 2072              	.LASF301:
+ 2073 14ec 5F5F5554 		.ascii	"__UTA_IBIT__ 64\000"
+ 2073      415F4942 
+ 2073      49545F5F 
+ 2073      20363400 
+ 2074              	.LASF8:
+ 2075 14fc 5F5F4154 		.ascii	"__ATOMIC_ACQUIRE 2\000"
+ 2075      4F4D4943 
+ 2075      5F414351 
+ 2075      55495245 
+ 2075      203200
+ 2076              	.LASF177:
+ 2077 150f 5F5F4445 		.ascii	"__DEC64_EPSILON__ 1E-15DD\000"
+ 2077      4336345F 
+ 2077      45505349 
+ 2077      4C4F4E5F 
+ 2077      5F203145 
+ 2078              	.LASF80:
+ 2079 1529 5F5F5549 		.ascii	"__UINTMAX_MAX__ 0xffffffffffffffffULL\000"
+ 2079      4E544D41 
+ 2079      585F4D41 
+ 2079      585F5F20 
+ 2079      30786666 
+ 2080              	.LASF369:
+ 2081 154f 53657475 		.ascii	"Setup/vectors.c\000"
+ 2081      702F7665 
+ 2081      63746F72 
+ 2081      732E6300 
+ 2082              	.LASF311:
+ 2083 155f 5F5F4743 		.ascii	"__GCC_ATOMIC_CHAR_LOCK_FREE 2\000"
+ 2083      435F4154 
+ 2083      4F4D4943 
+ 2083      5F434841 
+ 2083      525F4C4F 
+ 2084              	.LASF250:
+ 2085 157d 5F5F4C41 		.ascii	"__LACCUM_EPSILON__ 0x1P-31LK\000"
+ 2085      4343554D 
+ 2085      5F455053 
+ 2085      494C4F4E 
+ 2085      5F5F2030 
+ 2086              	.LASF283:
+ 2087 159a 5F5F5544 		.ascii	"__UDQ_IBIT__ 0\000"
+ 2087      515F4942 
+ 2087      49545F5F 
+ 2087      203000
+ 2088              	.LASF166:
+ 2089 15a9 5F5F4445 		.ascii	"__DEC32_MIN_EXP__ (-94)\000"
+ 2089      4333325F 
+ 2089      4D494E5F 
+ 2089      4558505F 
+ 2089      5F20282D 
+ 2090              	.LASF60:
+ 2091 15c1 5F5F5549 		.ascii	"__UINT_FAST32_TYPE__ unsigned int\000"
+ 2091      4E545F46 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 53
+
+
+ 2091      41535433 
+ 2091      325F5459 
+ 2091      50455F5F 
+ 2092              	.LASF152:
+ 2093 15e3 5F5F4C44 		.ascii	"__LDBL_DIG__ 15\000"
+ 2093      424C5F44 
+ 2093      49475F5F 
+ 2093      20313500 
+ 2094              	.LASF334:
+ 2095 15f3 5F5F4152 		.ascii	"__ARM_FEATURE_CLZ 1\000"
+ 2095      4D5F4645 
+ 2095      41545552 
+ 2095      455F434C 
+ 2095      5A203100 
+ 2096              	.LASF160:
+ 2097 1607 5F5F4C44 		.ascii	"__LDBL_EPSILON__ 2.2204460492503131e-16L\000"
+ 2097      424C5F45 
+ 2097      5053494C 
+ 2097      4F4E5F5F 
+ 2097      20322E32 
+ 2098              	.LASF281:
+ 2099 1630 5F5F5553 		.ascii	"__USQ_IBIT__ 0\000"
+ 2099      515F4942 
+ 2099      49545F5F 
+ 2099      203000
+ 2100              	.LASF304:
+ 2101 163f 5F5F474E 		.ascii	"__GNUC_GNU_INLINE__ 1\000"
+ 2101      55435F47 
+ 2101      4E555F49 
+ 2101      4E4C494E 
+ 2101      455F5F20 
+ 2102              	.LASF277:
+ 2103 1655 5F5F5551 		.ascii	"__UQQ_IBIT__ 0\000"
+ 2103      515F4942 
+ 2103      49545F5F 
+ 2103      203000
+ 2104              	.LASF266:
+ 2105 1664 5F5F5151 		.ascii	"__QQ_FBIT__ 7\000"
+ 2105      5F464249 
+ 2105      545F5F20 
+ 2105      3700
+ 2106              	.LASF287:
+ 2107 1672 5F5F4841 		.ascii	"__HA_IBIT__ 8\000"
+ 2107      5F494249 
+ 2107      545F5F20 
+ 2107      3800
+ 2108              	.LASF44:
+ 2109 1680 5F5F5549 		.ascii	"__UINT32_TYPE__ long unsigned int\000"
+ 2109      4E543332 
+ 2109      5F545950 
+ 2109      455F5F20 
+ 2109      6C6F6E67 
+ 2110              	.LASF145:
+ 2111 16a2 5F5F4442 		.ascii	"__DBL_MIN__ ((double)2.2250738585072014e-308L)\000"
+ 2111      4C5F4D49 
+ 2111      4E5F5F20 
+ 2111      2828646F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 54
+
+
+ 2111      75626C65 
+ 2112              	.LASF203:
+ 2113 16d1 5F5F5546 		.ascii	"__UFRACT_MIN__ 0.0UR\000"
+ 2113      52414354 
+ 2113      5F4D494E 
+ 2113      5F5F2030 
+ 2113      2E305552 
+ 2114              	.LASF339:
+ 2115 16e6 5F5F6172 		.ascii	"__arm__ 1\000"
+ 2115      6D5F5F20 
+ 2115      3100
+ 2116              	.LASF48:
+ 2117 16f0 5F5F494E 		.ascii	"__INT_LEAST32_TYPE__ long int\000"
+ 2117      545F4C45 
+ 2117      41535433 
+ 2117      325F5459 
+ 2117      50455F5F 
+ 2118              	.LASF94:
+ 2119 170e 5F5F494E 		.ascii	"__INT_LEAST16_MAX__ 0x7fff\000"
+ 2119      545F4C45 
+ 2119      41535431 
+ 2119      365F4D41 
+ 2119      585F5F20 
+ 2120              	.LASF179:
+ 2121 1729 5F5F4445 		.ascii	"__DEC128_MANT_DIG__ 34\000"
+ 2121      43313238 
+ 2121      5F4D414E 
+ 2121      545F4449 
+ 2121      475F5F20 
+ 2122              	.LASF224:
+ 2123 1740 5F5F554C 		.ascii	"__ULLFRACT_MAX__ 0XFFFFFFFFFFFFFFFFP-64ULLR\000"
+ 2123      4C465241 
+ 2123      43545F4D 
+ 2123      41585F5F 
+ 2123      20305846 
+ 2124              	.LASF173:
+ 2125 176c 5F5F4445 		.ascii	"__DEC64_MIN_EXP__ (-382)\000"
+ 2125      4336345F 
+ 2125      4D494E5F 
+ 2125      4558505F 
+ 2125      5F20282D 
+ 2126              	.LASF106:
+ 2127 1785 5F5F5549 		.ascii	"__UINT_LEAST64_MAX__ 0xffffffffffffffffULL\000"
+ 2127      4E545F4C 
+ 2127      45415354 
+ 2127      36345F4D 
+ 2127      41585F5F 
+ 2128              	.LASF130:
+ 2129 17b0 5F5F464C 		.ascii	"__FLT_MAX__ 3.4028234663852886e+38F\000"
+ 2129      545F4D41 
+ 2129      585F5F20 
+ 2129      332E3430 
+ 2129      32383233 
+ 2130              	.LASF241:
+ 2131 17d4 5F5F5541 		.ascii	"__UACCUM_FBIT__ 16\000"
+ 2131      4343554D 
+ 2131      5F464249 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 55
+
+
+ 2131      545F5F20 
+ 2131      313600
+ 2132              	.LASF245:
+ 2133 17e7 5F5F5541 		.ascii	"__UACCUM_EPSILON__ 0x1P-16UK\000"
+ 2133      4343554D 
+ 2133      5F455053 
+ 2133      494C4F4E 
+ 2133      5F5F2030 
+ 2134              	.LASF188:
+ 2135 1804 5F5F5346 		.ascii	"__SFRACT_MIN__ (-0.5HR-0.5HR)\000"
+ 2135      52414354 
+ 2135      5F4D494E 
+ 2135      5F5F2028 
+ 2135      2D302E35 
+ 2136              	.LASF359:
+ 2137 1822 5F5F4152 		.ascii	"__ARM_FEATURE_IDIV 1\000"
+ 2137      4D5F4645 
+ 2137      41545552 
+ 2137      455F4944 
+ 2137      49562031 
+ 2138              	.LASF360:
+ 2139 1837 5F5F4152 		.ascii	"__ARM_ASM_SYNTAX_UNIFIED__ 1\000"
+ 2139      4D5F4153 
+ 2139      4D5F5359 
+ 2139      4E544158 
+ 2139      5F554E49 
+ 2140              	.LASF343:
+ 2141 1854 5F5F7468 		.ascii	"__thumb2__ 1\000"
+ 2141      756D6232 
+ 2141      5F5F2031 
+ 2141      00
+ 2142              	.LASF273:
+ 2143 1861 5F5F4451 		.ascii	"__DQ_IBIT__ 0\000"
+ 2143      5F494249 
+ 2143      545F5F20 
+ 2143      3000
+ 2144              	.LASF79:
+ 2145 186f 5F5F494E 		.ascii	"__INTMAX_C(c) c ## LL\000"
+ 2145      544D4158 
+ 2145      5F432863 
+ 2145      29206320 
+ 2145      2323204C 
+ 2146              	.LASF315:
+ 2147 1885 5F5F4743 		.ascii	"__GCC_ATOMIC_SHORT_LOCK_FREE 2\000"
+ 2147      435F4154 
+ 2147      4F4D4943 
+ 2147      5F53484F 
+ 2147      52545F4C 
+ 2148              	.LASF76:
+ 2149 18a4 5F5F5054 		.ascii	"__PTRDIFF_MAX__ 0x7fffffff\000"
+ 2149      52444946 
+ 2149      465F4D41 
+ 2149      585F5F20 
+ 2149      30783766 
+ 2150              	.LASF222:
+ 2151 18bf 5F5F554C 		.ascii	"__ULLFRACT_IBIT__ 0\000"
+ 2151      4C465241 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 56
+
+
+ 2151      43545F49 
+ 2151      4249545F 
+ 2151      5F203000 
+ 2152              	.LASF120:
+ 2153 18d3 5F5F464C 		.ascii	"__FLT_EVAL_METHOD__ 0\000"
+ 2153      545F4556 
+ 2153      414C5F4D 
+ 2153      4554484F 
+ 2153      445F5F20 
+ 2154              	.LASF46:
+ 2155 18e9 5F5F494E 		.ascii	"__INT_LEAST8_TYPE__ signed char\000"
+ 2155      545F4C45 
+ 2155      41535438 
+ 2155      5F545950 
+ 2155      455F5F20 
+ 2156              	.LASF103:
+ 2157 1909 5F5F5549 		.ascii	"__UINT16_C(c) c\000"
+ 2157      4E543136 
+ 2157      5F432863 
+ 2157      29206300 
+ 2158              	.LASF68:
+ 2159 1919 5F5F5348 		.ascii	"__SHRT_MAX__ 0x7fff\000"
+ 2159      52545F4D 
+ 2159      41585F5F 
+ 2159      20307837 
+ 2159      66666600 
+ 2160              	.LASF17:
+ 2161 192d 5F5F5349 		.ascii	"__SIZEOF_FLOAT__ 4\000"
+ 2161      5A454F46 
+ 2161      5F464C4F 
+ 2161      41545F5F 
+ 2161      203400
+ 2162              	.LASF142:
+ 2163 1940 5F5F4442 		.ascii	"__DBL_MAX_10_EXP__ 308\000"
+ 2163      4C5F4D41 
+ 2163      585F3130 
+ 2163      5F455850 
+ 2163      5F5F2033 
+ 2164              	.LASF133:
+ 2165 1957 5F5F464C 		.ascii	"__FLT_DENORM_MIN__ 1.4012984643248171e-45F\000"
+ 2165      545F4445 
+ 2165      4E4F524D 
+ 2165      5F4D494E 
+ 2165      5F5F2031 
+ 2166              	.LASF132:
+ 2167 1982 5F5F464C 		.ascii	"__FLT_EPSILON__ 1.1920928955078125e-7F\000"
+ 2167      545F4550 
+ 2167      53494C4F 
+ 2167      4E5F5F20 
+ 2167      312E3139 
+ 2168              	.LASF25:
+ 2169 19a9 5F5F4F52 		.ascii	"__ORDER_PDP_ENDIAN__ 3412\000"
+ 2169      4445525F 
+ 2169      5044505F 
+ 2169      454E4449 
+ 2169      414E5F5F 
+ 2170              	.LASF320:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 57
+
+
+ 2171 19c3 5F5F4743 		.ascii	"__GCC_ATOMIC_POINTER_LOCK_FREE 2\000"
+ 2171      435F4154 
+ 2171      4F4D4943 
+ 2171      5F504F49 
+ 2171      4E544552 
+ 2172              	.LASF232:
+ 2173 19e4 5F5F5553 		.ascii	"__USACCUM_IBIT__ 8\000"
+ 2173      41434355 
+ 2173      4D5F4942 
+ 2173      49545F5F 
+ 2173      203800
+ 2174              	.LASF23:
+ 2175 19f7 5F5F4F52 		.ascii	"__ORDER_LITTLE_ENDIAN__ 1234\000"
+ 2175      4445525F 
+ 2175      4C495454 
+ 2175      4C455F45 
+ 2175      4E444941 
+ 2176              	.LASF32:
+ 2177 1a14 5F5F5749 		.ascii	"__WINT_TYPE__ unsigned int\000"
+ 2177      4E545F54 
+ 2177      5950455F 
+ 2177      5F20756E 
+ 2177      7369676E 
+ 2178              	.LASF49:
+ 2179 1a2f 5F5F494E 		.ascii	"__INT_LEAST64_TYPE__ long long int\000"
+ 2179      545F4C45 
+ 2179      41535436 
+ 2179      345F5459 
+ 2179      50455F5F 
+ 2180              	.LASF6:
+ 2181 1a52 5F5F4154 		.ascii	"__ATOMIC_RELAXED 0\000"
+ 2181      4F4D4943 
+ 2181      5F52454C 
+ 2181      41584544 
+ 2181      203000
+ 2182              	.LASF291:
+ 2183 1a65 5F5F4441 		.ascii	"__DA_IBIT__ 32\000"
+ 2183      5F494249 
+ 2183      545F5F20 
+ 2183      333200
+ 2184              	.LASF249:
+ 2185 1a74 5F5F4C41 		.ascii	"__LACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LK\000"
+ 2185      4343554D 
+ 2185      5F4D4158 
+ 2185      5F5F2030 
+ 2185      58374646 
+ 2186              	.LASF263:
+ 2187 1a9c 5F5F554C 		.ascii	"__ULLACCUM_MIN__ 0.0ULLK\000"
+ 2187      4C414343 
+ 2187      554D5F4D 
+ 2187      494E5F5F 
+ 2187      20302E30 
+ 2188              	.LASF96:
+ 2189 1ab5 5F5F494E 		.ascii	"__INT_LEAST32_MAX__ 0x7fffffffL\000"
+ 2189      545F4C45 
+ 2189      41535433 
+ 2189      325F4D41 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 58
+
+
+ 2189      585F5F20 
+ 2190              	.LASF165:
+ 2191 1ad5 5F5F4445 		.ascii	"__DEC32_MANT_DIG__ 7\000"
+ 2191      4333325F 
+ 2191      4D414E54 
+ 2191      5F444947 
+ 2191      5F5F2037 
+ 2192              	.LASF118:
+ 2193 1aea 5F5F4743 		.ascii	"__GCC_IEC_559 0\000"
+ 2193      435F4945 
+ 2193      435F3535 
+ 2193      39203000 
+ 2194              	.LASF239:
+ 2195 1afa 5F5F4143 		.ascii	"__ACCUM_MAX__ 0X7FFFFFFFP-15K\000"
+ 2195      43554D5F 
+ 2195      4D41585F 
+ 2195      5F203058 
+ 2195      37464646 
+ 2196              	.LASF229:
+ 2197 1b18 5F5F5341 		.ascii	"__SACCUM_MAX__ 0X7FFFP-7HK\000"
+ 2197      4343554D 
+ 2197      5F4D4158 
+ 2197      5F5F2030 
+ 2197      58374646 
+ 2198              	.LASF236:
+ 2199 1b33 5F5F4143 		.ascii	"__ACCUM_FBIT__ 15\000"
+ 2199      43554D5F 
+ 2199      46424954 
+ 2199      5F5F2031 
+ 2199      3500
+ 2200              	.LASF192:
+ 2201 1b45 5F5F5553 		.ascii	"__USFRACT_IBIT__ 0\000"
+ 2201      46524143 
+ 2201      545F4942 
+ 2201      49545F5F 
+ 2201      203000
+ 2202              	.LASF288:
+ 2203 1b58 5F5F5341 		.ascii	"__SA_FBIT__ 15\000"
+ 2203      5F464249 
+ 2203      545F5F20 
+ 2203      313500
+ 2204              	.LASF252:
+ 2205 1b67 5F5F554C 		.ascii	"__ULACCUM_IBIT__ 32\000"
+ 2205      41434355 
+ 2205      4D5F4942 
+ 2205      49545F5F 
+ 2205      20333200 
+ 2206              	.LASF272:
+ 2207 1b7b 5F5F4451 		.ascii	"__DQ_FBIT__ 63\000"
+ 2207      5F464249 
+ 2207      545F5F20 
+ 2207      363300
+ 2208              	.LASF346:
+ 2209 1b8a 5F5F4152 		.ascii	"__ARMEL__ 1\000"
+ 2209      4D454C5F 
+ 2209      5F203100 
+ 2210              	.LASF82:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 59
+
+
+ 2211 1b96 5F5F5349 		.ascii	"__SIG_ATOMIC_MAX__ 0x7fffffff\000"
+ 2211      475F4154 
+ 2211      4F4D4943 
+ 2211      5F4D4158 
+ 2211      5F5F2030 
+ 2212              	.LASF282:
+ 2213 1bb4 5F5F5544 		.ascii	"__UDQ_FBIT__ 64\000"
+ 2213      515F4642 
+ 2213      49545F5F 
+ 2213      20363400 
+ 2214              	.LASF269:
+ 2215 1bc4 5F5F4851 		.ascii	"__HQ_IBIT__ 0\000"
+ 2215      5F494249 
+ 2215      545F5F20 
+ 2215      3000
+ 2216              	.LASF139:
+ 2217 1bd2 5F5F4442 		.ascii	"__DBL_MIN_EXP__ (-1021)\000"
+ 2217      4C5F4D49 
+ 2217      4E5F4558 
+ 2217      505F5F20 
+ 2217      282D3130 
+ 2218              	.LASF364:
+ 2219 1bea 63686172 		.ascii	"char\000"
+ 2219      00
+ 2220              	.LASF286:
+ 2221 1bef 5F5F4841 		.ascii	"__HA_FBIT__ 7\000"
+ 2221      5F464249 
+ 2221      545F5F20 
+ 2221      3700
+ 2222              	.LASF151:
+ 2223 1bfd 5F5F4C44 		.ascii	"__LDBL_MANT_DIG__ 53\000"
+ 2223      424C5F4D 
+ 2223      414E545F 
+ 2223      4449475F 
+ 2223      5F203533 
+ 2224              	.LASF205:
+ 2225 1c12 5F5F5546 		.ascii	"__UFRACT_EPSILON__ 0x1P-16UR\000"
+ 2225      52414354 
+ 2225      5F455053 
+ 2225      494C4F4E 
+ 2225      5F5F2030 
+ 2226              	.LASF63:
+ 2227 1c2f 5F5F5549 		.ascii	"__UINTPTR_TYPE__ unsigned int\000"
+ 2227      4E545054 
+ 2227      525F5459 
+ 2227      50455F5F 
+ 2227      20756E73 
+ 2228              	.LASF107:
+ 2229 1c4d 5F5F5549 		.ascii	"__UINT64_C(c) c ## ULL\000"
+ 2229      4E543634 
+ 2229      5F432863 
+ 2229      29206320 
+ 2229      23232055 
+ 2230              	.LASF274:
+ 2231 1c64 5F5F5451 		.ascii	"__TQ_FBIT__ 127\000"
+ 2231      5F464249 
+ 2231      545F5F20 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 60
+
+
+ 2231      31323700 
+ 2232              	.LASF228:
+ 2233 1c74 5F5F5341 		.ascii	"__SACCUM_MIN__ (-0X1P7HK-0X1P7HK)\000"
+ 2233      4343554D 
+ 2233      5F4D494E 
+ 2233      5F5F2028 
+ 2233      2D305831 
+ 2234              	.LASF135:
+ 2235 1c96 5F5F464C 		.ascii	"__FLT_HAS_INFINITY__ 1\000"
+ 2235      545F4841 
+ 2235      535F494E 
+ 2235      46494E49 
+ 2235      54595F5F 
+ 2236              	.LASF73:
+ 2237 1cad 5F5F5743 		.ascii	"__WCHAR_MIN__ 0U\000"
+ 2237      4841525F 
+ 2237      4D494E5F 
+ 2237      5F203055 
+ 2237      00
+ 2238              	.LASF231:
+ 2239 1cbe 5F5F5553 		.ascii	"__USACCUM_FBIT__ 8\000"
+ 2239      41434355 
+ 2239      4D5F4642 
+ 2239      49545F5F 
+ 2239      203800
+ 2240              	.LASF350:
+ 2241 1cd1 5F5F4152 		.ascii	"__ARM_FEATURE_FMA\000"
+ 2241      4D5F4645 
+ 2241      41545552 
+ 2241      455F464D 
+ 2241      4100
+ 2242              	.LASF156:
+ 2243 1ce3 5F5F4C44 		.ascii	"__LDBL_MAX_10_EXP__ 308\000"
+ 2243      424C5F4D 
+ 2243      41585F31 
+ 2243      305F4558 
+ 2243      505F5F20 
+ 2244              	.LASF305:
+ 2245 1cfb 5F5F4E4F 		.ascii	"__NO_INLINE__ 1\000"
+ 2245      5F494E4C 
+ 2245      494E455F 
+ 2245      5F203100 
+ 2246              	.LASF225:
+ 2247 1d0b 5F5F554C 		.ascii	"__ULLFRACT_EPSILON__ 0x1P-64ULLR\000"
+ 2247      4C465241 
+ 2247      43545F45 
+ 2247      5053494C 
+ 2247      4F4E5F5F 
+ 2248              	.LASF14:
+ 2249 1d2c 5F5F5349 		.ascii	"__SIZEOF_LONG__ 4\000"
+ 2249      5A454F46 
+ 2249      5F4C4F4E 
+ 2249      475F5F20 
+ 2249      3400
+ 2250              	.LASF114:
+ 2251 1d3e 5F5F5549 		.ascii	"__UINT_FAST32_MAX__ 0xffffffffU\000"
+ 2251      4E545F46 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 61
+
+
+ 2251      41535433 
+ 2251      325F4D41 
+ 2251      585F5F20 
+ 2252              	.LASF208:
+ 2253 1d5e 5F5F4C46 		.ascii	"__LFRACT_MIN__ (-0.5LR-0.5LR)\000"
+ 2253      52414354 
+ 2253      5F4D494E 
+ 2253      5F5F2028 
+ 2253      2D302E35 
+ 2254              	.LASF58:
+ 2255 1d7c 5F5F5549 		.ascii	"__UINT_FAST8_TYPE__ unsigned int\000"
+ 2255      4E545F46 
+ 2255      41535438 
+ 2255      5F545950 
+ 2255      455F5F20 
+ 2256              	.LASF30:
+ 2257 1d9d 5F5F5054 		.ascii	"__PTRDIFF_TYPE__ int\000"
+ 2257      52444946 
+ 2257      465F5459 
+ 2257      50455F5F 
+ 2257      20696E74 
+ 2258              	.LASF162:
+ 2259 1db2 5F5F4C44 		.ascii	"__LDBL_HAS_DENORM__ 1\000"
+ 2259      424C5F48 
+ 2259      41535F44 
+ 2259      454E4F52 
+ 2259      4D5F5F20 
+ 2260              	.LASF104:
+ 2261 1dc8 5F5F5549 		.ascii	"__UINT_LEAST32_MAX__ 0xffffffffUL\000"
+ 2261      4E545F4C 
+ 2261      45415354 
+ 2261      33325F4D 
+ 2261      41585F5F 
+ 2262              	.LASF31:
+ 2263 1dea 5F5F5743 		.ascii	"__WCHAR_TYPE__ unsigned int\000"
+ 2263      4841525F 
+ 2263      54595045 
+ 2263      5F5F2075 
+ 2263      6E736967 
+ 2264              	.LASF312:
+ 2265 1e06 5F5F4743 		.ascii	"__GCC_ATOMIC_CHAR16_T_LOCK_FREE 2\000"
+ 2265      435F4154 
+ 2265      4F4D4943 
+ 2265      5F434841 
+ 2265      5231365F 
+ 2266              	.LASF146:
+ 2267 1e28 5F5F4442 		.ascii	"__DBL_EPSILON__ ((double)2.2204460492503131e-16L)\000"
+ 2267      4C5F4550 
+ 2267      53494C4F 
+ 2267      4E5F5F20 
+ 2267      2828646F 
+ 2268              	.LASF105:
+ 2269 1e5a 5F5F5549 		.ascii	"__UINT32_C(c) c ## UL\000"
+ 2269      4E543332 
+ 2269      5F432863 
+ 2269      29206320 
+ 2269      23232055 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 62
+
+
+ 2270              	.LASF294:
+ 2271 1e70 5F5F5548 		.ascii	"__UHA_FBIT__ 8\000"
+ 2271      415F4642 
+ 2271      49545F5F 
+ 2271      203800
+ 2272              	.LASF11:
+ 2273 1e7f 5F5F4154 		.ascii	"__ATOMIC_CONSUME 1\000"
+ 2273      4F4D4943 
+ 2273      5F434F4E 
+ 2273      53554D45 
+ 2273      203100
+ 2274              	.LASF353:
+ 2275 1e92 5F5F4152 		.ascii	"__ARM_NEON_FP\000"
+ 2275      4D5F4E45 
+ 2275      4F4E5F46 
+ 2275      5000
+ 2276              	.LASF185:
+ 2277 1ea0 5F5F4445 		.ascii	"__DEC128_SUBNORMAL_MIN__ 0.000000000000000000000000"
+ 2277      43313238 
+ 2277      5F535542 
+ 2277      4E4F524D 
+ 2277      414C5F4D 
+ 2278 1ed3 30303030 		.ascii	"000000001E-6143DL\000"
+ 2278      30303030 
+ 2278      31452D36 
+ 2278      31343344 
+ 2278      4C00
+ 2279              	.LASF184:
+ 2280 1ee5 5F5F4445 		.ascii	"__DEC128_EPSILON__ 1E-33DL\000"
+ 2280      43313238 
+ 2280      5F455053 
+ 2280      494C4F4E 
+ 2280      5F5F2031 
+ 2281              	.LASF43:
+ 2282 1f00 5F5F5549 		.ascii	"__UINT16_TYPE__ short unsigned int\000"
+ 2282      4E543136 
+ 2282      5F545950 
+ 2282      455F5F20 
+ 2282      73686F72 
+ 2283              	.LASF202:
+ 2284 1f23 5F5F5546 		.ascii	"__UFRACT_IBIT__ 0\000"
+ 2284      52414354 
+ 2284      5F494249 
+ 2284      545F5F20 
+ 2284      3000
+ 2285              	.LASF226:
+ 2286 1f35 5F5F5341 		.ascii	"__SACCUM_FBIT__ 7\000"
+ 2286      4343554D 
+ 2286      5F464249 
+ 2286      545F5F20 
+ 2286      3700
+ 2287              	.LASF171:
+ 2288 1f47 5F5F4445 		.ascii	"__DEC32_SUBNORMAL_MIN__ 0.000001E-95DF\000"
+ 2288      4333325F 
+ 2288      5355424E 
+ 2288      4F524D41 
+ 2288      4C5F4D49 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 63
+
+
+ 2289              	.LASF66:
+ 2290 1f6e 5F5F4758 		.ascii	"__GXX_ABI_VERSION 1010\000"
+ 2290      585F4142 
+ 2290      495F5645 
+ 2290      5253494F 
+ 2290      4E203130 
+ 2291              	.LASF308:
+ 2292 1f85 5F5F4743 		.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1\000"
+ 2292      435F4841 
+ 2292      56455F53 
+ 2292      594E435F 
+ 2292      434F4D50 
+ 2293              	.LASF330:
+ 2294 1faa 5F5F4152 		.ascii	"__ARM_FEATURE_UNALIGNED 1\000"
+ 2294      4D5F4645 
+ 2294      41545552 
+ 2294      455F554E 
+ 2294      414C4947 
+ 2295              	.LASF64:
+ 2296 1fc4 5F5F6861 		.ascii	"__has_include(STR) __has_include__(STR)\000"
+ 2296      735F696E 
+ 2296      636C7564 
+ 2296      65285354 
+ 2296      5229205F 
+ 2297              	.LASF109:
+ 2298 1fec 5F5F494E 		.ascii	"__INT_FAST16_MAX__ 0x7fffffff\000"
+ 2298      545F4641 
+ 2298      53543136 
+ 2298      5F4D4158 
+ 2298      5F5F2030 
+ 2299              	.LASF83:
+ 2300 200a 5F5F5349 		.ascii	"__SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)\000"
+ 2300      475F4154 
+ 2300      4F4D4943 
+ 2300      5F4D494E 
+ 2300      5F5F2028 
+ 2301              	.LASF253:
+ 2302 2037 5F5F554C 		.ascii	"__ULACCUM_MIN__ 0.0ULK\000"
+ 2302      41434355 
+ 2302      4D5F4D49 
+ 2302      4E5F5F20 
+ 2302      302E3055 
+ 2303              	.LASF292:
+ 2304 204e 5F5F5441 		.ascii	"__TA_FBIT__ 63\000"
+ 2304      5F464249 
+ 2304      545F5F20 
+ 2304      363300
+ 2305              	.LASF170:
+ 2306 205d 5F5F4445 		.ascii	"__DEC32_EPSILON__ 1E-6DF\000"
+ 2306      4333325F 
+ 2306      45505349 
+ 2306      4C4F4E5F 
+ 2306      5F203145 
+ 2307              	.LASF198:
+ 2308 2076 5F5F4652 		.ascii	"__FRACT_MIN__ (-0.5R-0.5R)\000"
+ 2308      4143545F 
+ 2308      4D494E5F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 64
+
+
+ 2308      5F20282D 
+ 2308      302E3552 
+ 2309              	.LASF56:
+ 2310 2091 5F5F494E 		.ascii	"__INT_FAST32_TYPE__ int\000"
+ 2310      545F4641 
+ 2310      53543332 
+ 2310      5F545950 
+ 2310      455F5F20 
+ 2311              	.LASF59:
+ 2312 20a9 5F5F5549 		.ascii	"__UINT_FAST16_TYPE__ unsigned int\000"
+ 2312      4E545F46 
+ 2312      41535431 
+ 2312      365F5459 
+ 2312      50455F5F 
+ 2313              	.LASF197:
+ 2314 20cb 5F5F4652 		.ascii	"__FRACT_IBIT__ 0\000"
+ 2314      4143545F 
+ 2314      49424954 
+ 2314      5F5F2030 
+ 2314      00
+ 2315              	.LASF217:
+ 2316 20dc 5F5F4C4C 		.ascii	"__LLFRACT_IBIT__ 0\000"
+ 2316      46524143 
+ 2316      545F4942 
+ 2316      49545F5F 
+ 2316      203000
+ 2317              	.LASF199:
+ 2318 20ef 5F5F4652 		.ascii	"__FRACT_MAX__ 0X7FFFP-15R\000"
+ 2318      4143545F 
+ 2318      4D41585F 
+ 2318      5F203058 
+ 2318      37464646 
+ 2319              	.LASF338:
+ 2320 2109 5F5F4152 		.ascii	"__ARM_ARCH_PROFILE 77\000"
+ 2320      4D5F4152 
+ 2320      43485F50 
+ 2320      524F4649 
+ 2320      4C452037 
+ 2321              	.LASF84:
+ 2322 211f 5F5F494E 		.ascii	"__INT8_MAX__ 0x7f\000"
+ 2322      54385F4D 
+ 2322      41585F5F 
+ 2322      20307837 
+ 2322      6600
+ 2323              	.LASF256:
+ 2324 2131 5F5F4C4C 		.ascii	"__LLACCUM_FBIT__ 31\000"
+ 2324      41434355 
+ 2324      4D5F4642 
+ 2324      49545F5F 
+ 2324      20333100 
+ 2325              	.LASF150:
+ 2326 2145 5F5F4442 		.ascii	"__DBL_HAS_QUIET_NAN__ 1\000"
+ 2326      4C5F4841 
+ 2326      535F5155 
+ 2326      4945545F 
+ 2326      4E414E5F 
+ 2327              	.LASF126:
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 65
+
+
+ 2328 215d 5F5F464C 		.ascii	"__FLT_MIN_10_EXP__ (-37)\000"
+ 2328      545F4D49 
+ 2328      4E5F3130 
+ 2328      5F455850 
+ 2328      5F5F2028 
+ 2329              	.LASF221:
+ 2330 2176 5F5F554C 		.ascii	"__ULLFRACT_FBIT__ 64\000"
+ 2330      4C465241 
+ 2330      43545F46 
+ 2330      4249545F 
+ 2330      5F203634 
+ 2331              	.LASF10:
+ 2332 218b 5F5F4154 		.ascii	"__ATOMIC_ACQ_REL 4\000"
+ 2332      4F4D4943 
+ 2332      5F414351 
+ 2332      5F52454C 
+ 2332      203400
+ 2333              	.LASF218:
+ 2334 219e 5F5F4C4C 		.ascii	"__LLFRACT_MIN__ (-0.5LLR-0.5LLR)\000"
+ 2334      46524143 
+ 2334      545F4D49 
+ 2334      4E5F5F20 
+ 2334      282D302E 
+ 2335              	.LASF352:
+ 2336 21bf 5F5F4152 		.ascii	"__ARM_NEON\000"
+ 2336      4D5F4E45 
+ 2336      4F4E00
+ 2337              	.LASF257:
+ 2338 21ca 5F5F4C4C 		.ascii	"__LLACCUM_IBIT__ 32\000"
+ 2338      41434355 
+ 2338      4D5F4942 
+ 2338      49545F5F 
+ 2338      20333200 
+ 2339              	.LASF246:
+ 2340 21de 5F5F4C41 		.ascii	"__LACCUM_FBIT__ 31\000"
+ 2340      4343554D 
+ 2340      5F464249 
+ 2340      545F5F20 
+ 2340      333100
+ 2341              	.LASF264:
+ 2342 21f1 5F5F554C 		.ascii	"__ULLACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULLK\000"
+ 2342      4C414343 
+ 2342      554D5F4D 
+ 2342      41585F5F 
+ 2342      20305846 
+ 2343              	.LASF233:
+ 2344 221d 5F5F5553 		.ascii	"__USACCUM_MIN__ 0.0UHK\000"
+ 2344      41434355 
+ 2344      4D5F4D49 
+ 2344      4E5F5F20 
+ 2344      302E3055 
+ 2345              	.LASF12:
+ 2346 2234 5F5F4649 		.ascii	"__FINITE_MATH_ONLY__ 0\000"
+ 2346      4E495445 
+ 2346      5F4D4154 
+ 2346      485F4F4E 
+ 2346      4C595F5F 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 66
+
+
+ 2347              	.LASF70:
+ 2348 224b 5F5F4C4F 		.ascii	"__LONG_MAX__ 0x7fffffffL\000"
+ 2348      4E475F4D 
+ 2348      41585F5F 
+ 2348      20307837 
+ 2348      66666666 
+ 2349              	.LASF243:
+ 2350 2264 5F5F5541 		.ascii	"__UACCUM_MIN__ 0.0UK\000"
+ 2350      4343554D 
+ 2350      5F4D494E 
+ 2350      5F5F2030 
+ 2350      2E30554B 
+ 2351              	.LASF296:
+ 2352 2279 5F5F5553 		.ascii	"__USA_FBIT__ 16\000"
+ 2352      415F4642 
+ 2352      49545F5F 
+ 2352      20313600 
+ 2353              	.LASF303:
+ 2354 2289 5F5F5553 		.ascii	"__USER_LABEL_PREFIX__ \000"
+ 2354      45525F4C 
+ 2354      4142454C 
+ 2354      5F505245 
+ 2354      4649585F 
+ 2355              	.LASF182:
+ 2356 22a0 5F5F4445 		.ascii	"__DEC128_MIN__ 1E-6143DL\000"
+ 2356      43313238 
+ 2356      5F4D494E 
+ 2356      5F5F2031 
+ 2356      452D3631 
+ 2357              	.LASF260:
+ 2358 22b9 5F5F4C4C 		.ascii	"__LLACCUM_EPSILON__ 0x1P-31LLK\000"
+ 2358      41434355 
+ 2358      4D5F4550 
+ 2358      53494C4F 
+ 2358      4E5F5F20 
+ 2359              	.LASF61:
+ 2360 22d8 5F5F5549 		.ascii	"__UINT_FAST64_TYPE__ long long unsigned int\000"
+ 2360      4E545F46 
+ 2360      41535436 
+ 2360      345F5459 
+ 2360      50455F5F 
+ 2361              	.LASF101:
+ 2362 2304 5F5F5549 		.ascii	"__UINT8_C(c) c\000"
+ 2362      4E54385F 
+ 2362      43286329 
+ 2362      206300
+ 2363              	.LASF331:
+ 2364 2313 5F5F4152 		.ascii	"__ARM_FEATURE_QRDMX\000"
+ 2364      4D5F4645 
+ 2364      41545552 
+ 2364      455F5152 
+ 2364      444D5800 
+ 2365              	.LASF50:
+ 2366 2327 5F5F5549 		.ascii	"__UINT_LEAST8_TYPE__ unsigned char\000"
+ 2366      4E545F4C 
+ 2366      45415354 
+ 2366      385F5459 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 67
+
+
+ 2366      50455F5F 
+ 2367              	.LASF86:
+ 2368 234a 5F5F494E 		.ascii	"__INT32_MAX__ 0x7fffffffL\000"
+ 2368      5433325F 
+ 2368      4D41585F 
+ 2368      5F203078 
+ 2368      37666666 
+ 2369              	.LASF307:
+ 2370 2364 5F5F4743 		.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1\000"
+ 2370      435F4841 
+ 2370      56455F53 
+ 2370      594E435F 
+ 2370      434F4D50 
+ 2371              	.LASF238:
+ 2372 2389 5F5F4143 		.ascii	"__ACCUM_MIN__ (-0X1P15K-0X1P15K)\000"
+ 2372      43554D5F 
+ 2372      4D494E5F 
+ 2372      5F20282D 
+ 2372      30583150 
+ 2373              	.LASF344:
+ 2374 23aa 5F5F5448 		.ascii	"__THUMBEL__ 1\000"
+ 2374      554D4245 
+ 2374      4C5F5F20 
+ 2374      3100
+ 2375              	.LASF92:
+ 2376 23b8 5F5F494E 		.ascii	"__INT_LEAST8_MAX__ 0x7f\000"
+ 2376      545F4C45 
+ 2376      41535438 
+ 2376      5F4D4158 
+ 2376      5F5F2030 
+ 2377              	.LASF337:
+ 2378 23d0 5F5F4152 		.ascii	"__ARM_SIZEOF_WCHAR_T 4\000"
+ 2378      4D5F5349 
+ 2378      5A454F46 
+ 2378      5F574348 
+ 2378      41525F54 
+ 2379              	.LASF175:
+ 2380 23e7 5F5F4445 		.ascii	"__DEC64_MIN__ 1E-383DD\000"
+ 2380      4336345F 
+ 2380      4D494E5F 
+ 2380      5F203145 
+ 2380      2D333833 
+ 2381              	.LASF140:
+ 2382 23fe 5F5F4442 		.ascii	"__DBL_MIN_10_EXP__ (-307)\000"
+ 2382      4C5F4D49 
+ 2382      4E5F3130 
+ 2382      5F455850 
+ 2382      5F5F2028 
+ 2383              	.LASF227:
+ 2384 2418 5F5F5341 		.ascii	"__SACCUM_IBIT__ 8\000"
+ 2384      4343554D 
+ 2384      5F494249 
+ 2384      545F5F20 
+ 2384      3800
+ 2385              	.LASF148:
+ 2386 242a 5F5F4442 		.ascii	"__DBL_HAS_DENORM__ 1\000"
+ 2386      4C5F4841 
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 68
+
+
+ 2386      535F4445 
+ 2386      4E4F524D 
+ 2386      5F5F2031 
+ 2387              	.LASF214:
+ 2388 243f 5F5F554C 		.ascii	"__ULFRACT_MAX__ 0XFFFFFFFFP-32ULR\000"
+ 2388      46524143 
+ 2388      545F4D41 
+ 2388      585F5F20 
+ 2388      30584646 
+ 2389              		.ident	"GCC: (bleeding-edge-toolchain) 6.3.0"
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 69
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 vectors.c
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:55     .text.__Default_Handler:0000000000000000 $t
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Default_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA2_Channel4_5_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA2_Channel3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA2_Channel2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA2_Channel1_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM7_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM6_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 UART5_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 UART4_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SPI3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM5_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SDIO_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 FSMC_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 ADC3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM8_CC_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM8_TRG_COM_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM8_UP_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM8_BRK_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USBWakeup_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 RTCAlarm_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI15_10_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USART3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USART2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USART1_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SPI2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SPI1_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 I2C2_ER_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 I2C2_EV_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 I2C1_ER_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 I2C1_EV_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM4_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM1_CC_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM1_TRG_COM_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM1_UP_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TIM1_BRK_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI9_5_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 CAN_SCE_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 CAN_RX1_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USB_LP_CAN1_RX0_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 USB_HP_CAN1_TX_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 ADC1_2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel7_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel6_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel5_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel4_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DMA1_Channel1_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI4_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI3_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI2_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI1_IRQHandler
+ARM GAS  C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s 			page 70
+
+
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 EXTI0_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 RCC_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 FLASH_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 RTC_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 TAMPER_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 PVD_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 WWDG_IRQHandler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SysTick_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 PendSV_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Reserved_0x34_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 DebugMon_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 SVC_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Reserved_0x28_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Reserved_0x24_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Reserved_0x20_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 __Reserved_0x1C_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 UsageFault_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 BusFault_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 MemManage_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 HardFault_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:61     .text.__Default_Handler:0000000000000000 NMI_Handler
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:239    .vectors:0000000000000000 vectors
+C:\Users\MICHA~1\AppData\Local\Temp\ccMrKotQ.s:236    .vectors:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+                           .group:0000000000000000 wm4.0.2d7fdbb0490084bf6f54c29442c0dcbf
+
+UNDEFINED SYMBOLS
+__main_stack_end
+Reset_Handler
